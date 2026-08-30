@@ -1,0 +1,1500 @@
+[
+  {
+    "color": "white",
+    "jant": "base",
+    "sidepod": false,
+    "frontWing": "low",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "white",
+      "base",
+      "low",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "white",
+    "jant": "base",
+    "sidepod": false,
+    "frontWing": "high",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "white",
+      "base",
+      "high",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "white",
+    "jant": "base",
+    "sidepod": true,
+    "frontWing": "none",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "white",
+      "base",
+      "sidepod",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "white",
+    "jant": "base",
+    "sidepod": true,
+    "frontWing": "none",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "white",
+      "base",
+      "sidepod",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "white",
+    "jant": "base",
+    "sidepod": true,
+    "frontWing": "low",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "white",
+      "base",
+      "sidepod",
+      "low",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "white",
+    "jant": "base",
+    "sidepod": true,
+    "frontWing": "low",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "white",
+      "base",
+      "sidepod",
+      "low",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "white",
+    "jant": "base",
+    "sidepod": true,
+    "frontWing": "high",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "white",
+      "base",
+      "sidepod",
+      "high",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "white",
+    "jant": "base",
+    "sidepod": true,
+    "frontWing": "high",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "white",
+      "base",
+      "sidepod",
+      "high",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "white",
+    "jant": "oz",
+    "sidepod": false,
+    "frontWing": "none",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "white",
+      "oz",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "white",
+    "jant": "oz",
+    "sidepod": false,
+    "frontWing": "none",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "white",
+      "oz",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "white",
+    "jant": "oz",
+    "sidepod": false,
+    "frontWing": "low",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "white",
+      "oz",
+      "low",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "white",
+    "jant": "oz",
+    "sidepod": false,
+    "frontWing": "low",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "white",
+      "oz",
+      "low",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "white",
+    "jant": "oz",
+    "sidepod": false,
+    "frontWing": "high",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "white",
+      "oz",
+      "high",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "white",
+    "jant": "oz",
+    "sidepod": false,
+    "frontWing": "high",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "white",
+      "oz",
+      "high",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "white",
+    "jant": "oz",
+    "sidepod": true,
+    "frontWing": "none",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "white",
+      "oz",
+      "sidepod",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "white",
+    "jant": "oz",
+    "sidepod": true,
+    "frontWing": "none",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "white",
+      "oz",
+      "sidepod",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "white",
+    "jant": "oz",
+    "sidepod": true,
+    "frontWing": "low",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "white",
+      "oz",
+      "sidepod",
+      "low",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "white",
+    "jant": "oz",
+    "sidepod": true,
+    "frontWing": "low",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "white",
+      "oz",
+      "sidepod",
+      "low",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "white",
+    "jant": "oz",
+    "sidepod": true,
+    "frontWing": "high",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "white",
+      "oz",
+      "sidepod",
+      "high",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "white",
+    "jant": "oz",
+    "sidepod": true,
+    "frontWing": "high",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "white",
+      "oz",
+      "sidepod",
+      "high",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "white",
+    "jant": "braid",
+    "sidepod": false,
+    "frontWing": "none",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "white",
+      "braid",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "white",
+    "jant": "braid",
+    "sidepod": false,
+    "frontWing": "none",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "white",
+      "braid",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "white",
+    "jant": "braid",
+    "sidepod": false,
+    "frontWing": "low",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "white",
+      "braid",
+      "low",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "white",
+    "jant": "braid",
+    "sidepod": false,
+    "frontWing": "low",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "white",
+      "braid",
+      "low",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "white",
+    "jant": "braid",
+    "sidepod": false,
+    "frontWing": "high",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "white",
+      "braid",
+      "high",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "white",
+    "jant": "braid",
+    "sidepod": false,
+    "frontWing": "high",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "white",
+      "braid",
+      "high",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "white",
+    "jant": "braid",
+    "sidepod": true,
+    "frontWing": "none",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "white",
+      "braid",
+      "sidepod",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "white",
+    "jant": "braid",
+    "sidepod": true,
+    "frontWing": "none",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "white",
+      "braid",
+      "sidepod",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "white",
+    "jant": "braid",
+    "sidepod": true,
+    "frontWing": "low",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "white",
+      "braid",
+      "sidepod",
+      "low",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "white",
+    "jant": "braid",
+    "sidepod": true,
+    "frontWing": "low",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "white",
+      "braid",
+      "sidepod",
+      "low",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "white",
+    "jant": "braid",
+    "sidepod": true,
+    "frontWing": "high",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "white",
+      "braid",
+      "sidepod",
+      "high",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "white",
+    "jant": "braid",
+    "sidepod": true,
+    "frontWing": "high",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "white",
+      "braid",
+      "sidepod",
+      "high",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "black",
+    "jant": "base",
+    "sidepod": false,
+    "frontWing": "none",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "black",
+      "base",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "black",
+    "jant": "base",
+    "sidepod": false,
+    "frontWing": "low",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "black",
+      "base",
+      "low",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "black",
+    "jant": "base",
+    "sidepod": false,
+    "frontWing": "high",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "black",
+      "base",
+      "high",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "black",
+    "jant": "base",
+    "sidepod": false,
+    "frontWing": "high",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "black",
+      "base",
+      "high",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "black",
+    "jant": "base",
+    "sidepod": true,
+    "frontWing": "none",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "black",
+      "base",
+      "sidepod",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "black",
+    "jant": "base",
+    "sidepod": true,
+    "frontWing": "none",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "black",
+      "base",
+      "sidepod",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "black",
+    "jant": "base",
+    "sidepod": true,
+    "frontWing": "low",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "black",
+      "base",
+      "sidepod",
+      "low",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "black",
+    "jant": "base",
+    "sidepod": true,
+    "frontWing": "low",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "black",
+      "base",
+      "sidepod",
+      "low",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "black",
+    "jant": "base",
+    "sidepod": true,
+    "frontWing": "high",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "black",
+      "base",
+      "sidepod",
+      "high",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "black",
+    "jant": "base",
+    "sidepod": true,
+    "frontWing": "high",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "black",
+      "base",
+      "sidepod",
+      "high",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "black",
+    "jant": "oz",
+    "sidepod": false,
+    "frontWing": "none",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "black",
+      "oz",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "black",
+    "jant": "oz",
+    "sidepod": false,
+    "frontWing": "none",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "black",
+      "oz",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "black",
+    "jant": "oz",
+    "sidepod": false,
+    "frontWing": "low",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "black",
+      "oz",
+      "low",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "black",
+    "jant": "oz",
+    "sidepod": false,
+    "frontWing": "low",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "black",
+      "oz",
+      "low",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "black",
+    "jant": "oz",
+    "sidepod": false,
+    "frontWing": "high",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "black",
+      "oz",
+      "high",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "black",
+    "jant": "oz",
+    "sidepod": false,
+    "frontWing": "high",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "black",
+      "oz",
+      "high",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "black",
+    "jant": "oz",
+    "sidepod": true,
+    "frontWing": "none",
+    "rearWing": "none",
+    "requiredKeywords": [
+      "black",
+      "oz",
+      "sidepod"
+    ]
+  },
+  {
+    "color": "black",
+    "jant": "oz",
+    "sidepod": true,
+    "frontWing": "none",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "black",
+      "oz",
+      "sidepod",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "black",
+    "jant": "oz",
+    "sidepod": true,
+    "frontWing": "none",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "black",
+      "oz",
+      "sidepod",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "black",
+    "jant": "oz",
+    "sidepod": true,
+    "frontWing": "low",
+    "rearWing": "none",
+    "requiredKeywords": [
+      "black",
+      "oz",
+      "sidepod",
+      "low"
+    ]
+  },
+  {
+    "color": "black",
+    "jant": "oz",
+    "sidepod": true,
+    "frontWing": "low",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "black",
+      "oz",
+      "sidepod",
+      "low",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "black",
+    "jant": "oz",
+    "sidepod": true,
+    "frontWing": "low",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "black",
+      "oz",
+      "sidepod",
+      "low",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "black",
+    "jant": "oz",
+    "sidepod": true,
+    "frontWing": "high",
+    "rearWing": "none",
+    "requiredKeywords": [
+      "black",
+      "oz",
+      "sidepod",
+      "high"
+    ]
+  },
+  {
+    "color": "black",
+    "jant": "oz",
+    "sidepod": true,
+    "frontWing": "high",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "black",
+      "oz",
+      "sidepod",
+      "high",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "black",
+    "jant": "oz",
+    "sidepod": true,
+    "frontWing": "high",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "black",
+      "oz",
+      "sidepod",
+      "high",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "black",
+    "jant": "braid",
+    "sidepod": false,
+    "frontWing": "none",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "black",
+      "braid",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "black",
+    "jant": "braid",
+    "sidepod": false,
+    "frontWing": "none",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "black",
+      "braid",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "black",
+    "jant": "braid",
+    "sidepod": false,
+    "frontWing": "low",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "black",
+      "braid",
+      "low",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "black",
+    "jant": "braid",
+    "sidepod": false,
+    "frontWing": "low",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "black",
+      "braid",
+      "low",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "black",
+    "jant": "braid",
+    "sidepod": false,
+    "frontWing": "high",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "black",
+      "braid",
+      "high",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "black",
+    "jant": "braid",
+    "sidepod": false,
+    "frontWing": "high",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "black",
+      "braid",
+      "high",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "black",
+    "jant": "braid",
+    "sidepod": true,
+    "frontWing": "none",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "black",
+      "braid",
+      "sidepod",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "black",
+    "jant": "braid",
+    "sidepod": true,
+    "frontWing": "none",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "black",
+      "braid",
+      "sidepod",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "black",
+    "jant": "braid",
+    "sidepod": true,
+    "frontWing": "low",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "black",
+      "braid",
+      "sidepod",
+      "low",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "black",
+    "jant": "braid",
+    "sidepod": true,
+    "frontWing": "low",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "black",
+      "braid",
+      "sidepod",
+      "low",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "black",
+    "jant": "braid",
+    "sidepod": true,
+    "frontWing": "high",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "black",
+      "braid",
+      "sidepod",
+      "high",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "black",
+    "jant": "braid",
+    "sidepod": true,
+    "frontWing": "high",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "black",
+      "braid",
+      "sidepod",
+      "high",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "red",
+    "jant": "base",
+    "sidepod": false,
+    "frontWing": "none",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "red",
+      "base",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "red",
+    "jant": "base",
+    "sidepod": false,
+    "frontWing": "low",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "red",
+      "base",
+      "low",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "red",
+    "jant": "base",
+    "sidepod": false,
+    "frontWing": "high",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "red",
+      "base",
+      "high",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "red",
+    "jant": "base",
+    "sidepod": false,
+    "frontWing": "high",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "red",
+      "base",
+      "high",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "red",
+    "jant": "base",
+    "sidepod": true,
+    "frontWing": "none",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "red",
+      "base",
+      "sidepod",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "red",
+    "jant": "base",
+    "sidepod": true,
+    "frontWing": "none",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "red",
+      "base",
+      "sidepod",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "red",
+    "jant": "base",
+    "sidepod": true,
+    "frontWing": "low",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "red",
+      "base",
+      "sidepod",
+      "low",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "red",
+    "jant": "base",
+    "sidepod": true,
+    "frontWing": "low",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "red",
+      "base",
+      "sidepod",
+      "low",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "red",
+    "jant": "base",
+    "sidepod": true,
+    "frontWing": "high",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "red",
+      "base",
+      "sidepod",
+      "high",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "red",
+    "jant": "base",
+    "sidepod": true,
+    "frontWing": "high",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "red",
+      "base",
+      "sidepod",
+      "high",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "red",
+    "jant": "oz",
+    "sidepod": false,
+    "frontWing": "none",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "red",
+      "oz",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "red",
+    "jant": "oz",
+    "sidepod": false,
+    "frontWing": "none",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "red",
+      "oz",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "red",
+    "jant": "oz",
+    "sidepod": false,
+    "frontWing": "low",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "red",
+      "oz",
+      "low",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "red",
+    "jant": "oz",
+    "sidepod": false,
+    "frontWing": "low",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "red",
+      "oz",
+      "low",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "red",
+    "jant": "oz",
+    "sidepod": false,
+    "frontWing": "high",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "red",
+      "oz",
+      "high",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "red",
+    "jant": "oz",
+    "sidepod": false,
+    "frontWing": "high",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "red",
+      "oz",
+      "high",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "red",
+    "jant": "oz",
+    "sidepod": true,
+    "frontWing": "none",
+    "rearWing": "none",
+    "requiredKeywords": [
+      "red",
+      "oz",
+      "sidepod"
+    ]
+  },
+  {
+    "color": "red",
+    "jant": "oz",
+    "sidepod": true,
+    "frontWing": "none",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "red",
+      "oz",
+      "sidepod",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "red",
+    "jant": "oz",
+    "sidepod": true,
+    "frontWing": "none",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "red",
+      "oz",
+      "sidepod",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "red",
+    "jant": "oz",
+    "sidepod": true,
+    "frontWing": "low",
+    "rearWing": "none",
+    "requiredKeywords": [
+      "red",
+      "oz",
+      "sidepod",
+      "low"
+    ]
+  },
+  {
+    "color": "red",
+    "jant": "oz",
+    "sidepod": true,
+    "frontWing": "low",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "red",
+      "oz",
+      "sidepod",
+      "low",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "red",
+    "jant": "oz",
+    "sidepod": true,
+    "frontWing": "low",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "red",
+      "oz",
+      "sidepod",
+      "low",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "red",
+    "jant": "oz",
+    "sidepod": true,
+    "frontWing": "high",
+    "rearWing": "none",
+    "requiredKeywords": [
+      "red",
+      "oz",
+      "sidepod",
+      "high"
+    ]
+  },
+  {
+    "color": "red",
+    "jant": "oz",
+    "sidepod": true,
+    "frontWing": "high",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "red",
+      "oz",
+      "sidepod",
+      "high",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "red",
+    "jant": "oz",
+    "sidepod": true,
+    "frontWing": "high",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "red",
+      "oz",
+      "sidepod",
+      "high",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "red",
+    "jant": "braid",
+    "sidepod": false,
+    "frontWing": "none",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "red",
+      "braid",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "red",
+    "jant": "braid",
+    "sidepod": false,
+    "frontWing": "none",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "red",
+      "braid",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "red",
+    "jant": "braid",
+    "sidepod": false,
+    "frontWing": "low",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "red",
+      "braid",
+      "low",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "red",
+    "jant": "braid",
+    "sidepod": false,
+    "frontWing": "low",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "red",
+      "braid",
+      "low",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "red",
+    "jant": "braid",
+    "sidepod": false,
+    "frontWing": "high",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "red",
+      "braid",
+      "high",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "red",
+    "jant": "braid",
+    "sidepod": false,
+    "frontWing": "high",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "red",
+      "braid",
+      "high",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "red",
+    "jant": "braid",
+    "sidepod": true,
+    "frontWing": "none",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "red",
+      "braid",
+      "sidepod",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "red",
+    "jant": "braid",
+    "sidepod": true,
+    "frontWing": "none",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "red",
+      "braid",
+      "sidepod",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "red",
+    "jant": "braid",
+    "sidepod": true,
+    "frontWing": "low",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "red",
+      "braid",
+      "sidepod",
+      "low",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "red",
+    "jant": "braid",
+    "sidepod": true,
+    "frontWing": "low",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "red",
+      "braid",
+      "sidepod",
+      "low",
+      "high",
+      "rear"
+    ]
+  },
+  {
+    "color": "red",
+    "jant": "braid",
+    "sidepod": true,
+    "frontWing": "high",
+    "rearWing": "low",
+    "requiredKeywords": [
+      "red",
+      "braid",
+      "sidepod",
+      "high",
+      "low",
+      "rear"
+    ]
+  },
+  {
+    "color": "red",
+    "jant": "braid",
+    "sidepod": true,
+    "frontWing": "high",
+    "rearWing": "high",
+    "requiredKeywords": [
+      "red",
+      "braid",
+      "sidepod",
+      "high",
+      "high",
+      "rear"
+    ]
+  }
+]

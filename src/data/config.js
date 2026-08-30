@@ -1,0 +1,187 @@
+// src/data/config.js
+
+export const MODELS = [
+  { id: "FS-26", label: "FS-26", year: "2026" },
+];
+
+export const COLORS = [
+  { id: "white", label: "Pure White",  hex: "#F0F0F0" },
+  { id: "black", label: "Onyx Black",  hex: "#111111" },
+  { id: "red",   label: "Racing Red",  hex: "#C0001A" },
+];
+
+export const SECTIONS = [
+  // ── EXTERIOR ──────────────────────────────────────────────
+  {
+    id: "color",
+    label: "Colour",
+    icon: "◐",
+    changeable: true,
+    type: "color",
+    group: "Exterior",
+  },
+  {
+    id: "jant",
+    label: "Wheels",
+    icon: "◎",
+    changeable: true,
+    type: "option",
+    group: "Exterior",
+    options: [
+      { id: "oz",    label: "OZ Racing", sub: "Multi-spoke Black · 4.6 kg" },
+      { id: "braid", label: "Braid",     sub: "Silver Alloy · 4.0 kg" },
+    ],
+    default: null, // nothing pre-selected
+  },
+  {
+    id: "aero",
+    label: "Aero Package",
+    icon: "⟿",
+    changeable: true,
+    type: "aero-toggle",
+    group: "Exterior",
+    // highWing, lowWing, sidepod are each toggled independently
+  },
+
+  // ── INTERIOR ──────────────────────────────────────────────
+  {
+    id: "koltuk",
+    label: "Seat",
+    icon: "▣",
+    changeable: true,
+    type: "option",
+    group: "Interior",
+    options: [
+      { id: "standard", label: "Standard",     sub: "Composite Suede · 4.8 kg" },
+      { id: "carbon",   label: "Carbon Fibre", sub: "FIA homologated · 3.2 kg" },
+    ],
+    default: "carbon",
+  },
+  {
+    id: "direksiyon",
+    label: "Steering Wheel",
+    icon: "⊙",
+    changeable: true,
+    type: "option",
+    group: "Interior",
+    options: [
+      { id: "basic", label: "Basic Steel",    sub: "Classic · 280 mm" },
+      { id: "pro",   label: "Pro / Display",  sub: "Integrated display · 280 mm" },
+    ],
+    default: "pro",
+  },
+
+  // ── SPECS ───────────────────────────────────────────
+  {
+    id: "lastik",
+    label: "Tyres",
+    icon: "◉",
+    changeable: true,
+    type: "option",
+    group: "Specs",
+    options: [
+      { id: "avon",    label: "Avon 6.0/20.0-13", sub: "Soft Compound · 3.8 kg" },
+      { id: "hoosier", label: "Hoosier R25B",      sub: "Super-Soft Compound · 3.6 kg" },
+      { id: "pirelli", label: "Pirelli FS",        sub: "Medium Compound · 4.0 kg" },
+    ],
+    default: "avon",
+  },
+  {
+    id: "suspansiyon",
+    label: "Suspension",
+    icon: "⌇",
+    changeable: true,
+    type: "option",
+    group: "Specs",
+    options: [
+      { id: "double_wishbone", label: "Double Wishbone",    sub: "Öhlins TTX25 Damper" },
+      { id: "pushrod",         label: "Pushrod Suspension", sub: "Penske 8760 Damper" },
+    ],
+    default: "double_wishbone",
+  },
+  {
+    id: "motor",
+    label: "Motor",
+    icon: "⚙",
+    changeable: true,
+    type: "option",
+    group: "Specs",
+    options: [
+      { id: "amk_4wd",   label: "AMK DD5 (4WD)",    sub: "4 × In-wheel Motors · 107 HP" },
+      { id: "amk_2wd",   label: "AMK DD5 (2WD)",    sub: "2 × In-wheel Motors · 94 HP" },
+      { id: "emrax_rwd", label: "Emrax 228 (RWD)",  sub: "Axial Flux Motor · 107 HP" },
+    ],
+    default: "amk_4wd",
+  },
+  {
+    id: "fren",
+    label: "Brakes",
+    icon: "⎔",
+    changeable: true,
+    type: "option",
+    group: "Specs",
+    options: [
+      { id: "brembo",    label: "Brembo Performance", sub: "4-piston Caliper" },
+      { id: "ap_racing", label: "AP Racing FS",       sub: "Lightweight Alloy Caliper" },
+      { id: "wilwood",   label: "Wilwood GP320",      sub: "Steel Disc" },
+    ],
+    default: "brembo",
+  },
+  {
+    id: "sasi",
+    label: "Chassis",
+    icon: "⛨",
+    changeable: true,
+    type: "option",
+    group: "Specs",
+    options: [
+      { id: "tubular",   label: "Tubular Spaceframe", sub: "Chromoly Steel · 26 kg" },
+      { id: "monocoque", label: "Carbon Monocoque",   sub: "Carbon Monocoque · 18 kg" },
+    ],
+    default: "tubular",
+  },
+  {
+    id: "batarya",
+    label: "Battery",
+    icon: "🔋",
+    changeable: true,
+    type: "option",
+    group: "Specs",
+    options: [
+      { id: "lifepo4", label: "LiFePO4 Pack",      sub: "High Performance · 7.2 kWh" },
+      { id: "liion",   label: "Lithium-Ion Cells", sub: "Lightweight · 6.8 kWh" },
+    ],
+    default: "lifepo4",
+  },
+];
+
+export const DEFAULT_STATE = {
+  model: "FS-26",
+  color: "white",
+  jant: null, // not pre-selected
+  // Aero selections
+  frontWing: 'none', // 'none' | 'low' | 'high'
+  rearWing: 'none',  // 'none' | 'low' | 'high'
+  sidepod: false,    // boolean
+  koltuk: "carbon",
+  direksiyon: "pro",
+  // Technical selections:
+  lastik: "avon",
+  suspansiyon: "double_wishbone",
+  motor: "amk_4wd",
+  fren: "brembo",
+  sasi: "tubular",
+  batarya: "lifepo4",
+};
+
+export const getInteriorImage = (section, state) => {
+  if (section === 'koltuk') {
+    if (state.koltuk === 'carbon') return '/assets/bpp-gorsel/img_5.jpeg';
+    return '/assets/bpp-gorsel/img_6.jpeg';
+  }
+  if (section === 'direksiyon') {
+    if (state.direksiyon === 'pro') return '/assets/bpp-gorsel/img_15.jpeg';
+    return '/assets/bpp-gorsel/img.jpeg';
+  }
+  return null;
+};
