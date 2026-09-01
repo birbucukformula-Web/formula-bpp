@@ -30,21 +30,18 @@ export const findBestImage = (state) => {
     
     // 3. Ön Kanat kontrolü
     if (hasFront) {
-      // lowfront, low-front, front-low varyasyonları
-      const kw1 = `${state.frontWing}front`;
-      const kw2 = `${state.frontWing}-front`;
-      const kw3 = `front-${state.frontWing}`;
-      if (!lower.includes(kw1) && !lower.includes(kw2) && !lower.includes(kw3)) return false;
+      const kw = state.frontWing; // 'low' veya 'high'
+      const regex = new RegExp(`(?:^|[-_])(${kw}front|${kw}-front|front-${kw})(?:[-_.]|$)`);
+      if (!regex.test(lower)) return false;
     } else {
       if (lower.includes('front')) return false;
     }
     
     // 4. Arka Kanat kontrolü
     if (hasRear) {
-      const kw1 = `${state.rearWing}rear`;
-      const kw2 = `${state.rearWing}-rear`;
-      const kw3 = `rear-${state.rearWing}`;
-      if (!lower.includes(kw1) && !lower.includes(kw2) && !lower.includes(kw3)) return false;
+      const kw = state.rearWing; // 'low' veya 'high'
+      const regex = new RegExp(`(?:^|[-_])(${kw}rear|${kw}-rear|rear-${kw})(?:[-_.]|$)`);
+      if (!regex.test(lower)) return false;
     } else {
       if (lower.includes('rear')) return false;
     }
@@ -57,7 +54,7 @@ export const findBestImage = (state) => {
     return true;
   });
 
-  return match ? `/assets/cars/${match}` : null;
+  return match ? `/assets/cars/${match}?v=2` : null;
 };
 
 export default function CarViewer({ state, activeSection }) {
