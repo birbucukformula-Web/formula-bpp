@@ -201,6 +201,7 @@ export default function CarViewer({ state, activeSection }) {
       }}
     >
       <div
+        className="car-viewer-inner"
         style={{
           position: "absolute",
           inset: "56px 60px 40px 60px",

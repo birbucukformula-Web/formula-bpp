@@ -265,7 +265,7 @@ export default function OptionPanel({ state, onChange, activeSection, setActiveS
   // Technical options behave as regular selectable options
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", height: "100%", overflowY: "auto" }}>
+    <div className="option-panel-wrapper" style={{ display: "flex", flexDirection: "column", height: "100%", overflowY: "auto" }}>
       {/* Porsche Style Tab Navigation */}
       <div style={{
         display: "flex",

@@ -118,7 +118,7 @@ export default function CarConfigurator({ user, triggerToast }) {
   const metrics = calculateMetrics();
 
   return (
-    <div style={{
+    <div className="responsive-layout" style={{
       display: "flex",
       width: "100%",
       height: "100%",
@@ -149,7 +149,7 @@ export default function CarConfigurator({ user, triggerToast }) {
       `}</style>
 
       {/* ── SOL: Viewer ve Bilgi Ekranı ── */}
-      <div style={{
+      <div className="responsive-viewer-container" style={{
         flex: 1,
         display: "flex",
         flexDirection: "column",
@@ -178,7 +178,7 @@ export default function CarConfigurator({ user, triggerToast }) {
         </div>
 
         {/* Alt Özet ve Performans Barı */}
-        <div style={{
+        <div className="responsive-metrics" style={{
           position: "relative",
           zIndex: 10,
           padding: "16px 40px",
@@ -191,7 +191,7 @@ export default function CarConfigurator({ user, triggerToast }) {
           gap: "20px",
           flexShrink: 0,
         }}>
-          <div style={{ flex: 1, minWidth: "200px" }}>
+          <div className="responsive-summary-bar" style={{ flex: 1, minWidth: "200px" }}>
             <SummaryBar state={state} />
           </div>
 
@@ -220,7 +220,7 @@ export default function CarConfigurator({ user, triggerToast }) {
       </div>
 
       {/* ── RIGHT: Luxury Configuration Panel (Glassmorphic) ── */}
-      <div style={{
+      <div className="responsive-sidebar" style={{
         width: "460px",
         flexShrink: 0,
         background: "rgba(10, 10, 15, 0.95)",
@@ -232,7 +232,7 @@ export default function CarConfigurator({ user, triggerToast }) {
         overflow: "hidden",
         zIndex: 20,
       }}>
-        <div style={{ padding: "16px 20px", borderBottom: "1px solid rgba(255, 255, 255, 0.05)", display: "flex", justifyContent: "center" }}>
+        <div className="responsive-model-selector" style={{ padding: "16px 20px", borderBottom: "1px solid rgba(255, 255, 255, 0.05)", display: "flex", justifyContent: "center" }}>
           <ModelSelector selected={state.model} onChange={(v) => handleChange("model", v)} />
         </div>
         <div style={{ flex: 1, minHeight: 0 }}>

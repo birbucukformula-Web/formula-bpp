@@ -171,7 +171,7 @@ export default function App() {
   };
 
   return (
-    <div style={{
+    <div className="app-container" style={{
       display: "flex",
       flexDirection: "column",
       width: "100%",
@@ -182,7 +182,7 @@ export default function App() {
       overflow: "hidden",
     }}>
       {/* ── SHARED HEADER (Porsche-Inspired Glassmorphic Navigation) ── */}
-      <header style={{
+      <header className="responsive-header" style={{
         position: "relative",
         zIndex: 100,
         display: "flex",
@@ -219,7 +219,7 @@ export default function App() {
         </div>
 
         {/* Center Section: Navigation Links */}
-        <nav style={{ display: "flex", gap: "28px" }}>
+        <nav className="responsive-nav" style={{ display: "flex", gap: "28px" }}>
           {[
             { id: "configurator", label: "CUSTOMIZE" },
             { id: "forum", label: "PIT LANE FORUM" },
