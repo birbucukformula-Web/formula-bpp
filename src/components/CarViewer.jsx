@@ -210,7 +210,7 @@ export default function CarViewer({ state, activeSection }) {
           right: 0,
           margin: "0 auto",
           width: "calc(100% - 120px)",
-          maxWidth: "1100px",
+          maxWidth: "850px",
           transform: `translate(${offset.x}px, ${offset.y}px) scale(${scale})`,
           transformOrigin: "center center",
           transition: isZoomed ? "none" : "transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
