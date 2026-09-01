@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import CarConfigurator from "./components/CarConfigurator";
 import Forum from "./components/Forum";
 import Garage from "./components/Garage";
+import Footer from "./components/Footer";
 import { auth, db } from "./firebase";
 import { signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
@@ -21,13 +22,24 @@ export default function App() {
       if (currentUser) {
         // 1. HIZLI GİRİŞ: Veritabanı (Firestore) yanıt vermezse/gecikirse uygulama kilitlenmesin diye hemen varsayılan bilgilerle giriş yap!
         const fallbackName = currentUser.displayName || currentUser.email?.split('@')[0] || "Driver";
+        
+        // F5 atıldığında bilgilerin kaybolmaması için önce LocalStorage'a bakalım
+        const localDataRaw = localStorage.getItem(`fs_profile_${currentUser.uid}`);
+        let localProfile = null;
+        if (localDataRaw) {
+          try { localProfile = JSON.parse(localDataRaw); } catch(e) {}
+        }
+        
+        const initialName = localProfile?.nickname || fallbackName;
+        const initialAvatar = localProfile?.avatarIndex ?? 0;
+
         setUser({ 
           uid: currentUser.uid, 
-          username: fallbackName,
-          avatarIndex: 0 
+          username: initialName,
+          avatarIndex: initialAvatar 
         });
-        setProfileNickname(fallbackName);
-        setProfileAvatarIndex(0);
+        setProfileNickname(initialName);
+        setProfileAvatarIndex(initialAvatar);
 
         // 2. Arka planda sessizce veritabanından özel profili çekmeye çalış
         try {
@@ -107,6 +119,12 @@ export default function App() {
     }));
     setShowProfileModal(false);
     triggerToast("Profile applied!");
+    
+    // Ayrıca localStorage'a da anında yazalım ki F5 atınca kaybolmasın (eğer DB yavaşsa)
+    localStorage.setItem(`fs_profile_${user.uid}`, JSON.stringify({
+      nickname: updatedNickname,
+      avatarIndex: profileAvatarIndex
+    }));
 
     // Arka planda veritabanına kaydet
     try {
@@ -351,6 +369,20 @@ export default function App() {
           <Garage user={user} triggerToast={triggerToast} />
         )}
       </main>
+
+      {/* ── GLOBAL FOOTER ── */}
+      <footer style={{
+        background: "rgba(10, 10, 15, 0.95)",
+        borderTop: "1px solid rgba(255, 255, 255, 0.05)",
+        padding: "12px 40px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexShrink: 0,
+        zIndex: 100,
+      }}>
+        <Footer style={{ margin: 0, padding: 0, border: "none", background: "transparent" }} />
+      </footer>
 
       {/* ── AUTHENTICATION MODAL (Glassmorphic) ── */}
       {showLoginModal && (

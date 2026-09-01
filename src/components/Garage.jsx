@@ -1,5 +1,6 @@
 // src/components/Garage.jsx
 import { useState, useEffect } from "react";
+import Footer from "./Footer";
 
 const INITIAL_TIMELINE = [
   { id: "u1", date: "2025-09-10", version: "v1.0", title: "Base Configuration (Season Launch)", desc: "Initial assembly of the tubular space frame chassis, steering column, and suspension linkages.", effect: "Base Setup" },
@@ -1301,7 +1302,6 @@ export default function Garage({ user, triggerToast }) {
           </div>
         </div>
       )}
-
     </div>
   );
 }

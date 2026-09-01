@@ -5,12 +5,11 @@ import { getInteriorImage } from "../data/config";
 const MIN_SCALE = 1;
 const MAX_SCALE = 3;
 
-// Klasördeki mevcut tüm render görsellerinin listesi
 const AVAILABLE_FILES = [
-  "black-base-bare.jpeg", "black-base-highfront-highrear.png", "black-base-highfront.png", "black-base-highrear.png", "black-base-lowfront-highrear.png", "black-base-lowfront-lowrear.png", "black-base-lowfront.jpeg", "black-base-lowrear.jpeg", "black-base-sidepod-highfront-highrear.png", "black-base-sidepod-highfront-lowrear.png", "black-base-sidepod-highfront.png", "black-base-sidepod-highrear.png", "black-base-sidepod-lowfront-highrear.png", "black-base-sidepod-lowfront-lowrear.png", "black-base-sidepod-lowfront.png", "black-base-sidepod-lowrear.png", "black-base-sidepod.jpeg", "black-base-sidepod.png", "black-braid-bare.jpg", "black-braid-highfront-highrear.png", "black-braid-highfront-lowrear.png", "black-braid-highfront.png", "black-braid-highrear.png", "black-braid-lowfront-highrear.png", "black-braid-lowfront-lowrear.png", "black-braid-lowfront.png", "black-braid-lowrear.png", "black-braid-sidepod-highfront.png", "black-braid-sidepod-highrear.png", "black-braid-sidepod-lowfront-highrear.png", "black-braid-sidepod-lowfront-lowrear.png", "black-braid-sidepod-lowfront.png", "black-braid-sidepod-lowrear.png", "black-oz-bare.jpg", "black-oz-highfront-highrear.png", "black-oz-highfront-lowrear.png", "black-oz-highfront.png", "black-oz-highrear.png", "black-oz-lowfront-highrear.png", "black-oz-lowfront-lowrear.png", "black-oz-lowfront.png", "black-oz-lowrear.png", "black-oz-sidepod-highfront-highrear.png", "black-oz-sidepod-highfront-lowrear.png", "black-oz-sidepod-highfront.png", "black-oz-sidepod-highrear.png", "black-oz-sidepod-lowfront-highrear.png", "black-oz-sidepod-lowfront-lowrear.png", "black-oz-sidepod-lowfront.png", "black-oz-sidepod-lowrear.png", "black-oz-sidepod.png", "Carbon-Fibre.png", "Composite-Suede.png", "red-base-bare.jpeg", "red-base-lowfront-lowrear.png", "red-base-lowfront.jpeg", "red-base-lowrear.jpeg", "red-base-sidepod-highfront.png", "red-base-sidepod-lowfront.png", "red-base-sidepod.jpeg", "red-base-sidepod.png", "red-braid-bare.jpg", "red-braid-highfront.png", "red-braid-lowfront.png", "red-braid-sidepod-highfront.png", "red-braid-sidepod-lowfront.png", "red-oz-bare.jpg", "red-oz-highfront.png", "red-oz-lowfront.png", "white-base-bare.jpeg", "white-base-highfront.png", "white-base-highrear.jpeg", "white-base-lowfront-highrear.png", "white-base-lowfront-lowrear.png", "white-base-lowfront.jpeg", "white-base-lowrear.jpeg", "white-base-sidepod-highfront-highrear.png", "white-base-sidepod-highfront-lowrear.png", "white-base-sidepod-highfront.png", "white-base-sidepod-highrear.png", "white-base-sidepod-lowfront-highrear.png", "white-base-sidepod-lowfront-lowrear.png", "white-base-sidepod-lowfront.png", "white-base-sidepod-lowrear.png", "white-base-sidepod.jpeg", "white-braid-bare.jpg", "white-braid-high-front.png", "white-braid-highfront-highrear.png", "white-braid-highfront-lowrear.png", "white-braid-highfront.png", "white-braid-highrear.png", "white-braid-low-front.png", "white-braid-lowfront-highrear.png", "white-braid-lowfront-lowrear.png", "white-braid-lowfront.png", "white-braid-lowrear.png", "white-braid-sidepod-highfront-highrear.png", "white-braid-sidepod-highfront-lowrear.png", "white-braid-sidepod-highfront.png", "white-braid-sidepod-highrear.png", "white-braid-sidepod-lowfront-highrear.png", "white-braid-sidepod-lowfront-lowrear.png", "white-braid-sidepod-lowfront.png", "white-braid-sidepod-lowrear.png", "white-braid-sidepod.png", "white-car.jpeg", "white-oz-bare.jpg", "white-oz-highfront-highrear.png", "white-oz-highfront-lowrear.png", "white-oz-highfront.jpg", "white-oz-highfront.png", "white-oz-highrear.png", "white-oz-low.png", "white-oz-lowfront-highrear.png", "white-oz-lowfront-lowrear.png", "white-oz-lowfront.png", "white-oz-lowrear.png", "white-oz-sidepod-highfront-highrear.png", "white-oz-sidepod-highfront-lowrear.png", "white-oz-sidepod-highfront.png", "white-oz-sidepod-highrear.png", "white-oz-sidepod-lowfront-highrear.png", "white-oz-sidepod-lowfront-lowrear.png", "white-oz-sidepod-lowfront.png", "white-oz-sidepod-lowrear.png", "white-oz-sidepod.png"
+  "basic-steel.png","black-base-car.jpeg","black-base-highfront-highrear.png","black-base-highfront-hightrear-sidepod.png","black-base-highfront.png","black-base-highrear.png","black-base-lowfront-highrear.png","black-base-lowfront-lowrear-sidepod.png","black-base-lowfront-lowrear.png","black-base-lowfront.jpeg","black-base-lowrear.jpeg","black-base-sidepod.png","black-braid-bare.jpg","black-braid-highfront-highrear.png","black-braid-highfront-hightrear-sidepod.png","black-braid-highfront-lowrear.png","black-braid-highfront.png","black-braid-highrear.png","black-braid-lowfront-highrear.png","black-braid-lowfront-lowrear-sidepod.png","black-braid-lowfront-lowrear.png","black-braid-lowfront.png","black-braid-lowrear.png","black-oz-bare.jpg","black-oz-highfront-highrear.png","black-oz-highfront-lowrear.png","black-oz-highfront.png","black-oz-highrear.png","black-oz-lowfront-highrear.png","black-oz-lowfront-lowrear.png","black-oz-lowfront.png","black-oz-lowrear.png","black-oz-sidepod.png","Carbon-Fibre.png","pro-display.png","red-bare-highfront-lowrear.png","red-base-car.jpeg","red-base-highfront-highrear-sidepod.png","red-base-highfront-highrear.png","red-base-highfront-lowrear.png","red-base-highrear.png","red-base-idepod.jpeg","red-base-lowfront-highrear.png","red-base-lowfront-lowrear-sidepod.png","red-base-lowfront-lowrear.png","red-base-lowfront.jpeg","red-base-lowrear.jpeg","red-base-sidepod.png","red-braid-bare.jpg","red-braid-highfront-highrear-sidepod.png","red-braid-highfront-highrear.png","red-braid-highfront-lowrear.png","red-braid-highfront.png","red-braid-highrear.png","red-braid-lowfront-highrear.png","red-braid-lowfront-lowrear-sidepod.png","red-braid-lowfront-lowrear.png","red-braid-lowfront.png","red-braid-lowrear.png","red-oz-bare.jpg","red-oz-highfront-highrear.png","red-oz-highfront-lowrear.png","red-oz-highfront.png","red-oz-highrear.png","red-oz-lowfront-highrear.png","red-oz-lowfront-lowrear.png","red-oz-lowfront.png","red-oz-lowrear.png","red-oz-sidepod.png","standard-seat.png","white-base-car.jpeg","white-base-highfront-highrear-sidepod.png","white-base-highfront.png","white-base-highrear.jpeg","white-base-lowfront-highrear.png","white-base-lowfront-lowrear-sidepod.png","white-base-lowfront-lowrear.png","white-base-lowfront.png","white-base-lowrear.jpeg","white-base-sidepod.jpeg","white-braid-bare.jpg","white-braid-frontlow.png","white-braid-highfront-highrear-sidepod.png","white-braid-highfront-highrear.png","white-braid-highfront-lowrear.png","white-braid-highfront.png","white-braid-highrear.png","white-braid-lowfront-highrear.png","white-braid-lowfront-lowrear-sidepod.png","white-braid-lowfront-lowrear.png","white-braid-lowfront.png","white-braid-lowrear.png","white-braid-sidepod.png","white-car.jpeg","white-oz-bare.jpg","white-oz-highfront-highrear.png","white-oz-highfront-lowrear.png","white-oz-highfront-sidepod.png","white-oz-highfront.jpg","white-oz-highrear.png","white-oz-lowfront-highrear.png","white-oz-lowfront-lowrear.png","white-oz-lowfront-sidepod.png","white-oz-lowrear.png","white-oz-sidepod.png"
 ];
 
-const findBestImage = (state) => {
+export const findBestImage = (state) => {
   const c = state.color || 'white';
   const w = (!state.jant || state.jant === 'none') ? 'base' : state.jant;
   
@@ -18,20 +17,45 @@ const findBestImage = (state) => {
   const hasFront = state.frontWing && state.frontWing !== 'none';
   const hasRear = state.rearWing && state.rearWing !== 'none';
 
-  const parts = [c, w];
-  if (hasSidepod) parts.push('sidepod');
-  
-  if (hasFront) parts.push(state.frontWing + 'front'); // 'lowfront' or 'highfront'
-  if (hasRear) parts.push(state.rearWing + 'rear');    // 'lowrear' or 'highrear'
-  
-  if (!hasSidepod && !hasFront && !hasRear) {
-    parts.push('bare');
-  }
-  
-  const exactName = parts.join('-'); // e.g. white-braid-sidepod-lowfront-lowrear
+  const match = AVAILABLE_FILES.find(file => {
+    const lower = file.toLowerCase();
+    
+    // 1. Renk ve Jant kontrolü
+    if (!lower.includes(c)) return false;
+    if (!lower.includes(w)) return false;
+    
+    // 2. Sidepod kontrolü (Eğer isteniyorsa adında geçmeli, istenmiyorsa geçmemeli)
+    if (hasSidepod && !lower.includes('sidepod')) return false;
+    if (!hasSidepod && lower.includes('sidepod')) return false;
+    
+    // 3. Ön Kanat kontrolü
+    if (hasFront) {
+      // lowfront, low-front, front-low varyasyonları
+      const kw1 = `${state.frontWing}front`;
+      const kw2 = `${state.frontWing}-front`;
+      const kw3 = `front-${state.frontWing}`;
+      if (!lower.includes(kw1) && !lower.includes(kw2) && !lower.includes(kw3)) return false;
+    } else {
+      if (lower.includes('front')) return false;
+    }
+    
+    // 4. Arka Kanat kontrolü
+    if (hasRear) {
+      const kw1 = `${state.rearWing}rear`;
+      const kw2 = `${state.rearWing}-rear`;
+      const kw3 = `rear-${state.rearWing}`;
+      if (!lower.includes(kw1) && !lower.includes(kw2) && !lower.includes(kw3)) return false;
+    } else {
+      if (lower.includes('rear')) return false;
+    }
 
-  // Find the exact match (ignoring extension)
-  const match = AVAILABLE_FILES.find(file => file.toLowerCase().startsWith(exactName.toLowerCase() + '.'));
+    // 5. Hiçbir aero yoksa bare veya car olmalı
+    if (!hasSidepod && !hasFront && !hasRear) {
+      if (!lower.includes('bare') && !lower.includes('car')) return false;
+    }
+
+    return true;
+  });
 
   return match ? `/assets/cars/${match}` : null;
 };
@@ -179,7 +203,7 @@ export default function CarViewer({ state, activeSection }) {
       <div
         style={{
           position: "absolute",
-          inset: "40px 60px",
+          inset: "56px 60px 40px 60px",
           transform: `translate(${offset.x}px, ${offset.y}px) scale(${scale})`,
           transformOrigin: "center center",
           transition: isZoomed ? "none" : "transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
@@ -188,6 +212,7 @@ export default function CarViewer({ state, activeSection }) {
       >
         {isInterior ? (
           <img
+            key={interiorSrc}
             src={interiorSrc}
             alt="Car Interior"
             draggable={false}
@@ -201,28 +226,50 @@ export default function CarViewer({ state, activeSection }) {
             }}
           />
         ) : (
-          /* ── EXTERIOR: No-effect instant swap (as requested) ── */
+          /* ── EXTERIOR: Smart single image crossfade fallback ── */
           <div
             style={{
               position: "absolute",
               inset: 0,
-              backgroundColor: "transparent",
+              backgroundColor: "#ffffff", 
+              overflow: "hidden",
+              borderRadius: "16px",
+              boxShadow: "0 10px 40px rgba(0,0,0,0.4)",
             }}
           >
+            {/* Eski Resim (Altta kalır) */}
             <img
-              src={currentExteriorImage}
-              alt="Current Car Exterior Configuration"
+              src={prevExteriorImage}
+              alt="Previous Car Exterior"
               draggable={false}
               style={{
                 position: "absolute",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                width: "auto",
+                inset: 0,
+                width: "100%",
                 height: "100%",
-                maxWidth: "none",
+                objectFit: "contain",
                 pointerEvents: "none",
-                transition: "all 0.3s ease-in-out",
+                transform: "scale(1.02)", /* Kenarlardaki render hatalarını kesmek için hafif zoom */
+                opacity: isFading ? 1 : 0,
+                transition: isFading ? "opacity 0.6s ease" : "none",
+              }}
+            />
+            {/* Yeni Resim (Üstte, yavaşça belirir) */}
+            <img
+              src={currentExteriorImage}
+              alt="Car Exterior"
+              draggable={false}
+              onLoad={() => setIsFading(false)}
+              style={{
+                position: "absolute",
+                inset: 0,
+                width: "100%",
+                height: "100%",
+                objectFit: "contain",
+                pointerEvents: "none",
+                transform: "scale(1.02)", /* Kenarlardaki render hatalarını kesmek için hafif zoom */
+                opacity: isFading ? 0 : 1,
+                transition: "opacity 0.6s ease",
               }}
             />
           </div>

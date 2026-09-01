@@ -4,48 +4,51 @@ import { DEFAULT_STATE } from "../data/config";
 import CarViewer from "./CarViewer";
 import OptionPanel from "./OptionPanel";
 import ModelSelector from "./ModelSelector";
+import CheckoutModal from "./CheckoutModal";
 import SummaryBar from "./SummaryBar";
+import Footer from "./Footer";
 
 export default function CarConfigurator({ user, triggerToast }) {
   const [state, setState] = useState(DEFAULT_STATE);
   const [activeSection, setActiveSection] = useState("color");
+  const [showCheckout, setShowCheckout] = useState(false);
 
   const handleChange = (key, value) => setState((prev) => ({ ...prev, [key]: value }));
 
   const calculateMetrics = () => {
     let weight = 120; // base structure
-    
+
     // Chassis
     if (state.sasi === "tubular") weight += 26;
     else if (state.sasi === "monocoque") weight += 18;
-    
+
     // Motor (Electric motors are much lighter than combustion engine block + fuel tank!)
     if (state.motor === "amk_4wd") weight += 30;
     else if (state.motor === "amk_2wd") weight += 15;
     else if (state.motor === "emrax_rwd") weight += 25;
-    
+
 
     // Tires
     if (state.lastik === "avon") weight += 15.2;
     else if (state.lastik === "hoosier") weight += 14.4;
     else if (state.lastik === "pirelli") weight += 16.0;
-    
+
     // Battery
-    if (state.batarya === "lifepo4") weight += 22;
-    else if (state.batarya === "liion") weight += 18;
-    
+    if (state.batarya === "kokam") weight += 24; // Pouch cells generally need more robust housing or this specific config is heavier
+    else if (state.batarya === "molicel") weight += 18; // Cylindrical light pack
+
     // Seat
     if (state.koltuk === "carbon") weight += 3.2;
     else weight += 4.8;
-    
+
     // Steering
     if (state.direksiyon === "pro") weight += 1.8;
     else weight += 1.2;
-    
+
     // Aero parts
     if (state.frontWing === 'high') weight += 3.0; // front high wing
     else if (state.frontWing === 'low') weight += 1.5; // front low wing
-    
+
     if (state.rearWing === 'high') weight += 2.5; // rear high wing
     else if (state.rearWing === 'low') weight += 1.5; // rear low wing
 
@@ -65,6 +68,11 @@ export default function CarConfigurator({ user, triggerToast }) {
       power = 107;
       engineSub = "Emrax 228 (RWD)";
     }
+    
+    // Battery power boost
+    if (state.batarya === "kokam") {
+      power += 8; // Kokam high discharge gives more peak power
+    }
 
     // 3. HIZLANMA (ACCELERATION) - Electric vehicles have instant torque
     // 4WD torque vectoring is the absolute king, launching incredibly fast!
@@ -83,16 +91,19 @@ export default function CarConfigurator({ user, triggerToast }) {
     // Tires effect (Hoosier is the stickiest compound)
     if (state.lastik === "hoosier") accel -= 0.12;
     else if (state.lastik === "avon") accel -= 0.06;
-    
+
     // Aero downforce effect on acceleration
-    if (state.frontWing === 'high') accel -= 0.05; 
+    if (state.frontWing === 'high') accel -= 0.05;
     else if (state.frontWing === 'low') accel -= 0.02;
-    
-    if (state.rearWing === 'high') accel -= 0.05; 
+
+    if (state.rearWing === 'high') accel -= 0.05;
     else if (state.rearWing === 'low') accel -= 0.02;
 
+    // Battery discharge effect
+    if (state.batarya === "kokam") accel -= 0.08; // High C-rate improves 0-100 launch
+
     // Clamp values beautifully (FSE world records are between 1.80s and 2.90s)
-    accel = Math.max(1.80, Math.min(2.90, accel));
+    accel = Math.max(1.50, Math.min(2.90, accel));
 
     return {
       weight: weight.toFixed(1) + " kg",
@@ -155,15 +166,6 @@ export default function CarConfigurator({ user, triggerToast }) {
           zIndex: 0,
         }} />
 
-        {/* Model Selector Floating */}
-        <div style={{
-          position: "absolute",
-          top: "24px",
-          right: "30px",
-          zIndex: 15,
-        }}>
-          <ModelSelector selected={state.model} onChange={(v) => handleChange("model", v)} />
-        </div>
 
         {/* Ana Araba Görsel Alanı */}
         <div style={{
@@ -196,9 +198,9 @@ export default function CarConfigurator({ user, triggerToast }) {
           {/* Porsche Style Performance Metrics */}
           <div style={{ display: "flex", gap: "24px" }}>
             {[
-              { label: "WEIGHT",       value: metrics.weight, sub: metrics.weightSub },
-              { label: "POWER",        value: metrics.power,  sub: metrics.engineSub },
-              { label: "ACCELERATION", value: metrics.accel,  sub: metrics.accelSub },
+              { label: "WEIGHT", value: metrics.weight, sub: metrics.weightSub },
+              { label: "POWER", value: metrics.power, sub: metrics.engineSub },
+              { label: "ACCELERATION", value: metrics.accel, sub: metrics.accelSub },
             ].map((stat, i) => (
               <div key={i} style={{ textAlign: "right" }}>
                 <div style={{ color: "rgba(255, 255, 255, 0.3)", fontSize: "8.5px", letterSpacing: "0.15em", fontWeight: 700 }}>
@@ -214,20 +216,25 @@ export default function CarConfigurator({ user, triggerToast }) {
             ))}
           </div>
         </div>
+
       </div>
 
       {/* ── RIGHT: Luxury Configuration Panel (Glassmorphic) ── */}
       <div style={{
-        width: "380px",
-        minWidth: "340px",
+        width: "460px",
+        flexShrink: 0,
+        background: "rgba(10, 10, 15, 0.95)",
         borderLeft: "1px solid rgba(255, 255, 255, 0.05)",
-        background: "rgba(6, 6, 10, 0.75)",
+        boxShadow: "-10px 0 40px rgba(0,0,0,0.5)",
         backdropFilter: "blur(20px)",
         display: "flex",
         flexDirection: "column",
         overflow: "hidden",
         zIndex: 20,
       }}>
+        <div style={{ padding: "16px 20px", borderBottom: "1px solid rgba(255, 255, 255, 0.05)", display: "flex", justifyContent: "center" }}>
+          <ModelSelector selected={state.model} onChange={(v) => handleChange("model", v)} />
+        </div>
         <div style={{ flex: 1, minHeight: 0 }}>
           <OptionPanel
             state={state}
@@ -246,7 +253,7 @@ export default function CarConfigurator({ user, triggerToast }) {
           flexShrink: 0,
         }}>
           <button
-            onClick={() => alert(`Configuration saved!\n\n${JSON.stringify(state, null, 2)}`)}
+            onClick={() => setShowCheckout(true)}
             style={{
               width: "100%",
               padding: "16px",
@@ -278,7 +285,7 @@ export default function CarConfigurator({ user, triggerToast }) {
         </div>
       </div>
 
-      {/* Redundant toast display block removed (handled globally by App.js) */}
+      {showCheckout && <CheckoutModal state={state} onClose={() => setShowCheckout(false)} />}
     </div>
   );
 }

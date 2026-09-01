@@ -16,14 +16,15 @@ export default function ModelSelector({ selected, onChange }) {
             letterSpacing: "0.08em",
             cursor: "pointer",
             background: selected === model.id
-              ? "rgba(255,255,255,0.12)"
-              : "transparent",
+              ? "rgba(20, 20, 25, 0.9)"
+              : "rgba(20, 20, 25, 0.5)",
+            backdropFilter: "blur(10px)",
             border: selected === model.id
-              ? "1px solid rgba(255,255,255,0.25)"
+              ? "1px solid rgba(255,255,255,0.3)"
               : "1px solid rgba(255,255,255,0.1)",
             color: selected === model.id
               ? "white"
-              : "rgba(255,255,255,0.35)",
+              : "rgba(255,255,255,0.5)",
             transition: "all 0.15s",
             fontFamily: "inherit",
           }}

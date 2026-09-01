@@ -148,10 +148,10 @@ export const SECTIONS = [
     type: "option",
     group: "Specs",
     options: [
-      { id: "lifepo4", label: "LiFePO4 Pack",      sub: "High Performance · 7.2 kWh" },
-      { id: "liion",   label: "Lithium-Ion Cells", sub: "Lightweight · 6.8 kWh" },
+      { id: "molicel", label: "Molicel INR21700-P42A", sub: "21700 Silindirik · 45A" },
+      { id: "kokam",   label: "Kokam SLPB Serisi",     sub: "Pouch · Yüksek Güç" },
     ],
-    default: "lifepo4",
+    default: "molicel",
   },
 ];
 
@@ -171,17 +171,17 @@ export const DEFAULT_STATE = {
   motor: "amk_4wd",
   fren: "brembo",
   sasi: "tubular",
-  batarya: "lifepo4",
+  batarya: "molicel",
 };
 
 export const getInteriorImage = (section, state) => {
   if (section === 'koltuk') {
     if (state.koltuk === 'carbon') return '/assets/cars/Carbon-Fibre.png';
-    return '/assets/cars/Composite-Suede.png';
+    return '/assets/cars/standard-seat.png';
   }
   if (section === 'direksiyon') {
-    if (state.direksiyon === 'pro') return '/assets/bpp-gorsel/img_15.jpeg';
-    return '/assets/bpp-gorsel/img.jpeg';
+    if (state.direksiyon === 'pro') return '/assets/cars/pro-display.png';
+    return '/assets/cars/basic-steel.png';
   }
   return null;
 };

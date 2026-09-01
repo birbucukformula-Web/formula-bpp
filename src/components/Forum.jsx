@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { db } from "../firebase";
 import { collection, onSnapshot, addDoc, updateDoc, doc, query, orderBy } from "firebase/firestore";
+import Footer from "./Footer";
 
 const CATEGORIES = [
   { id: "tech_support", label: "Technical Support", desc: "Engine, battery, and electronic troubleshooting", icon: "🔧" },
@@ -790,7 +791,6 @@ export default function Forum({ user, triggerToast, openLogin }) {
             </div>
           </div>
         )}
-
       </div>
     </div>
   );
