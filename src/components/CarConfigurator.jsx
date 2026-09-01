@@ -131,6 +131,10 @@ export default function CarConfigurator({ user, triggerToast }) {
         ::-webkit-scrollbar-thumb:hover {
           background: rgba(255, 255, 255, 0.2);
         }
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
       `}</style>
 
       {/* ── SOL: Viewer ve Bilgi Ekranı ── */}

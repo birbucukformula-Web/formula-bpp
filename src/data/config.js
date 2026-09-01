@@ -176,8 +176,8 @@ export const DEFAULT_STATE = {
 
 export const getInteriorImage = (section, state) => {
   if (section === 'koltuk') {
-    if (state.koltuk === 'carbon') return '/assets/bpp-gorsel/img_5.jpeg';
-    return '/assets/bpp-gorsel/img_6.jpeg';
+    if (state.koltuk === 'carbon') return '/assets/cars/Carbon-Fibre.png';
+    return '/assets/cars/Composite-Suede.png';
   }
   if (section === 'direksiyon') {
     if (state.direksiyon === 'pro') return '/assets/bpp-gorsel/img_15.jpeg';

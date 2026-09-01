@@ -1,5 +1,7 @@
 // src/components/Forum.jsx
 import { useState, useEffect } from "react";
+import { db } from "../firebase";
+import { collection, onSnapshot, addDoc, updateDoc, doc, query, orderBy } from "firebase/firestore";
 
 const CATEGORIES = [
   { id: "tech_support", label: "Technical Support", desc: "Engine, battery, and electronic troubleshooting", icon: "🔧" },
@@ -90,47 +92,52 @@ export default function Forum({ user, triggerToast, openLogin }) {
 
   // Initialize/Load Forum Data
   useEffect(() => {
-    const saved = localStorage.getItem("fse_forum_threads");
-    if (saved) {
-      try {
-        setThreads(JSON.parse(saved));
-      } catch (e) {
-        setThreads(INITIAL_THREADS);
-      }
-    } else {
-      localStorage.setItem("fse_forum_threads", JSON.stringify(INITIAL_THREADS));
-      setThreads(INITIAL_THREADS);
-    }
+    const q = query(collection(db, "threads"), orderBy("date", "desc"));
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const threadsData = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+      setThreads(threadsData);
+      
+      // Update active thread if it's currently open so new replies appear immediately
+      setActiveThread(prev => {
+        if (!prev) return null;
+        const updated = threadsData.find(t => t.id === prev.id);
+        return updated || prev;
+      });
+    });
+    
+    return () => unsubscribe();
   }, []);
 
-  const saveThreads = (updatedThreads) => {
-    setThreads(updatedThreads);
-    localStorage.setItem("fse_forum_threads", JSON.stringify(updatedThreads));
+  const renderAvatarSprite = (index = 0, size = 36) => {
+    const row = Math.floor(index / 3);
+    const col = index % 3;
+    
+    return (
+      <div style={{
+        width: `${size}px`,
+        height: `${size}px`,
+        borderRadius: "50%",
+        overflow: "hidden",
+        boxShadow: "0 0 8px rgba(192, 0, 26, 0.3)",
+        border: "2px solid #C0001A",
+        background: "white",
+        flexShrink: 0
+      }}>
+        <div style={{
+          width: "100%",
+          height: "100%",
+          backgroundImage: "url('/assets/avatars_sprite.jpg')",
+          backgroundSize: "300% 300%",
+          backgroundPosition: `${col * 50}% ${row * 50}%`,
+        }} />
+      </div>
+    );
   };
 
-  const getAvatarStyle = (name) => {
-    let hash = 0;
-    for (let i = 0; i < name.length; i++) {
-      hash = name.charCodeAt(i) + ((hash << 5) - hash);
-    }
-    const colorIndex = Math.abs(hash) % AVATAR_COLORS.length;
-    return {
-      width: "36px",
-      height: "36px",
-      borderRadius: "50%",
-      background: AVATAR_COLORS[colorIndex],
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      fontSize: "12px",
-      fontWeight: 800,
-      color: "white",
-      textTransform: "uppercase",
-      boxShadow: "0 0 10px rgba(0,0,0,0.3)",
-    };
-  };
-
-  const handleCreateThread = (e) => {
+  const handleCreateThread = async (e) => {
     e.preventDefault();
     if (!user) {
       triggerToast("You must sign in first!");
@@ -142,35 +149,49 @@ export default function Forum({ user, triggerToast, openLogin }) {
       return;
     }
 
+    // Geçici/Lokal ID oluştur (Optimistic UI için)
+    const tempId = "temp_" + Date.now();
     const newThread = {
-      id: "thread_" + Date.now(),
+      id: tempId, // Lokal kullanım için
       categoryId: activeCategory.id,
       title: newThreadTitle.trim(),
       author: user.username,
+      authorAvatarIndex: user.avatarIndex || 0,
       date: new Date().toISOString().replace('T', ' ').slice(0, 16),
       replies: [
         {
           author: user.username,
+          authorAvatarIndex: user.avatarIndex || 0,
           date: new Date().toISOString().replace('T', ' ').slice(0, 16),
           text: newThreadContent.trim()
         }
       ]
     };
 
-    const updated = [newThread, ...threads];
-    saveThreads(updated);
-    
-    // Close modal & reset fields
+    // Arayüzü anında güncelle
+    setThreads(prev => [newThread, ...prev]);
     setShowNewThreadModal(false);
     setNewThreadTitle("");
     setNewThreadContent("");
-    
-    // Open new thread directly
     setActiveThread(newThread);
-    triggerToast("Discussion thread posted successfully!");
+    triggerToast("Discussion thread posted!");
+
+    // Arka planda veritabanına kaydet
+    try {
+      const dbThread = { ...newThread };
+      delete dbThread.id; // Firestore kendisi ID verecek
+      const docRef = await addDoc(collection(db, "threads"), dbThread);
+      
+      // Lokal ID'yi gerçeğiyle değiştir
+      setThreads(prev => prev.map(t => t.id === tempId ? { ...t, id: docRef.id } : t));
+      setActiveThread(prev => prev.id === tempId ? { ...prev, id: docRef.id } : prev);
+    } catch (error) {
+      console.error("DB Error:", error);
+      triggerToast("Konu sadece bu oturum için oluşturuldu (Veritabanı hatası).");
+    }
   };
 
-  const handlePostReply = (e) => {
+  const handlePostReply = async (e) => {
     e.preventDefault();
     if (!user) {
       triggerToast("You must sign in first!");
@@ -184,23 +205,31 @@ export default function Forum({ user, triggerToast, openLogin }) {
 
     const newReply = {
       author: user.username,
+      authorAvatarIndex: user.avatarIndex || 0,
       date: new Date().toISOString().replace('T', ' ').slice(0, 16),
       text: replyText.trim()
     };
 
-    const updated = threads.map((t) => {
-      if (t.id === activeThread.id) {
-        const nextReplies = [...t.replies, newReply];
-        // Keep active thread local view in sync
-        setActiveThread({ ...t, replies: nextReplies });
-        return { ...t, replies: nextReplies };
-      }
-      return t;
-    });
-
-    saveThreads(updated);
+    // Arayüzü anında güncelle (Optimistic UI)
+    const updatedReplies = [...activeThread.replies, newReply];
+    const updatedThread = { ...activeThread, replies: updatedReplies };
+    
+    setActiveThread(updatedThread);
+    setThreads(prev => prev.map(t => t.id === activeThread.id ? updatedThread : t));
     setReplyText("");
-    triggerToast("Reply posted successfully!");
+    triggerToast("Reply posted!");
+
+    // Arka planda veritabanına kaydet
+    try {
+      // Sadece eğer konu veritabanında varsa kaydet (geçici ID değilse)
+      if (!activeThread.id.startsWith("temp_")) {
+        const threadRef = doc(db, "threads", activeThread.id);
+        await updateDoc(threadRef, { replies: updatedReplies });
+      }
+    } catch (error) {
+      console.error("DB Error:", error);
+      triggerToast("Cevap sadece bu oturum için kaydedildi (Veritabanı hatası).");
+    }
   };
 
   const getThreadList = () => {
@@ -415,8 +444,8 @@ export default function Forum({ user, triggerToast, openLogin }) {
                           <span style={{ fontSize: "13px", fontWeight: 700, color: "#fff", letterSpacing: "0.01em" }}>{t.title}</span>
                         </td>
                         <td style={{ padding: "20px 24px" }}>
-                          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                            <div style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#C0001A" }} />
+                          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                            {renderAvatarSprite(t.authorAvatarIndex || 0, 28)}
                             <span style={{ fontSize: "12px", color: "rgba(255,255,255,0.85)", fontWeight: 500 }}>{t.author}</span>
                           </div>
                         </td>
@@ -499,9 +528,7 @@ export default function Forum({ user, triggerToast, openLogin }) {
                   >
                     {/* User profile left column */}
                     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px", flexShrink: 0 }}>
-                      <div style={getAvatarStyle(reply.author)}>
-                        {reply.author.slice(0, 2)}
-                      </div>
+                      {renderAvatarSprite(reply.authorAvatarIndex || 0, 52)}
                       <span style={{ fontSize: "11px", fontWeight: 700, color: "#fff", letterSpacing: "0.03em" }}>{reply.author}</span>
                       {isOp && (
                         <span style={{ fontSize: "8px", background: "#C0001A", color: "white", padding: "2px 6px", borderRadius: "8px", fontWeight: 800 }}>OP</span>

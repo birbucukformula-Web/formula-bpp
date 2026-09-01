@@ -7,40 +7,31 @@ const MAX_SCALE = 3;
 
 // Klasördeki mevcut tüm render görsellerinin listesi
 const AVAILABLE_FILES = [
-  "black-base-car.jpeg", "black-base-high-front.png", "black-base-high-sidepod.png", "black-base-low-front.jpeg", "black-base-low-rear.jpeg", "black-base-low-sidepod.png", "black-base-sidepod.jpeg", "black-base-sidepod.png", "black-braid-bare.jpg", "black-braid-high-front.png", "black-braid-high-sidepod.png", "black-braid-low-front.png", "black-braid-low-sidepod.png", "black-oz-bare.jpg", "black-oz-high-front.png", "black-oz-low-front.png", "red-bare-highfront-lowrear.png", "red-base-car.jpeg", "red-base-high-sidepod.png", "red-base-idepod.jpeg", "red-base-low-front.jpeg", "red-base-low-rear.jpeg", "red-base-low-sidepod.png", "red-base-sidepod.png", "red-braid-bare.jpg", "red-braid-high-front.png", "red-braid-high-sidepod.png", "red-braid-low-front.png", "red-braid-low-sidepod.png", "red-oz-bare.jpg", "red-oz-high-front.png", "red-oz-low-front.png", "white-base-car.jpeg", "white-base-high-front.png", "white-base-high-rear.jpeg", "white-base-high-sidepod.png", "white-base-low-front.jpeg", "white-base-low-rear.jpeg", "white-base-low-sidepod.png", "white-base-sidepod.jpeg", "white-braid-bare.jpg", "white-braid-front-high.png", "white-braid-front-low.png", "white-braid-high-front.png", "white-braid-high-sidepod.png", "white-braid-low-front.png", "white-braid-low-sidepod.png", "white-braid-sidepod.png", "white-car.jpeg", "white-oz-bare.jpg", "white-oz-high-front.jpg", "white-oz-high-sidepod.png", "white-oz-high.png", "white-oz-low-front.png", "white-oz-low-sidepod.png", "white-oz-low.png", "white-oz-sidepod.png"
+  "black-base-bare.jpeg", "black-base-highfront-highrear.png", "black-base-highfront.png", "black-base-highrear.png", "black-base-lowfront-highrear.png", "black-base-lowfront-lowrear.png", "black-base-lowfront.jpeg", "black-base-lowrear.jpeg", "black-base-sidepod-highfront-highrear.png", "black-base-sidepod-highfront-lowrear.png", "black-base-sidepod-highfront.png", "black-base-sidepod-highrear.png", "black-base-sidepod-lowfront-highrear.png", "black-base-sidepod-lowfront-lowrear.png", "black-base-sidepod-lowfront.png", "black-base-sidepod-lowrear.png", "black-base-sidepod.jpeg", "black-base-sidepod.png", "black-braid-bare.jpg", "black-braid-highfront-highrear.png", "black-braid-highfront-lowrear.png", "black-braid-highfront.png", "black-braid-highrear.png", "black-braid-lowfront-highrear.png", "black-braid-lowfront-lowrear.png", "black-braid-lowfront.png", "black-braid-lowrear.png", "black-braid-sidepod-highfront.png", "black-braid-sidepod-highrear.png", "black-braid-sidepod-lowfront-highrear.png", "black-braid-sidepod-lowfront-lowrear.png", "black-braid-sidepod-lowfront.png", "black-braid-sidepod-lowrear.png", "black-oz-bare.jpg", "black-oz-highfront-highrear.png", "black-oz-highfront-lowrear.png", "black-oz-highfront.png", "black-oz-highrear.png", "black-oz-lowfront-highrear.png", "black-oz-lowfront-lowrear.png", "black-oz-lowfront.png", "black-oz-lowrear.png", "black-oz-sidepod-highfront-highrear.png", "black-oz-sidepod-highfront-lowrear.png", "black-oz-sidepod-highfront.png", "black-oz-sidepod-highrear.png", "black-oz-sidepod-lowfront-highrear.png", "black-oz-sidepod-lowfront-lowrear.png", "black-oz-sidepod-lowfront.png", "black-oz-sidepod-lowrear.png", "black-oz-sidepod.png", "Carbon-Fibre.png", "Composite-Suede.png", "red-base-bare.jpeg", "red-base-lowfront-lowrear.png", "red-base-lowfront.jpeg", "red-base-lowrear.jpeg", "red-base-sidepod-highfront.png", "red-base-sidepod-lowfront.png", "red-base-sidepod.jpeg", "red-base-sidepod.png", "red-braid-bare.jpg", "red-braid-highfront.png", "red-braid-lowfront.png", "red-braid-sidepod-highfront.png", "red-braid-sidepod-lowfront.png", "red-oz-bare.jpg", "red-oz-highfront.png", "red-oz-lowfront.png", "white-base-bare.jpeg", "white-base-highfront.png", "white-base-highrear.jpeg", "white-base-lowfront-highrear.png", "white-base-lowfront-lowrear.png", "white-base-lowfront.jpeg", "white-base-lowrear.jpeg", "white-base-sidepod-highfront-highrear.png", "white-base-sidepod-highfront-lowrear.png", "white-base-sidepod-highfront.png", "white-base-sidepod-highrear.png", "white-base-sidepod-lowfront-highrear.png", "white-base-sidepod-lowfront-lowrear.png", "white-base-sidepod-lowfront.png", "white-base-sidepod-lowrear.png", "white-base-sidepod.jpeg", "white-braid-bare.jpg", "white-braid-high-front.png", "white-braid-highfront-highrear.png", "white-braid-highfront-lowrear.png", "white-braid-highfront.png", "white-braid-highrear.png", "white-braid-low-front.png", "white-braid-lowfront-highrear.png", "white-braid-lowfront-lowrear.png", "white-braid-lowfront.png", "white-braid-lowrear.png", "white-braid-sidepod-highfront-highrear.png", "white-braid-sidepod-highfront-lowrear.png", "white-braid-sidepod-highfront.png", "white-braid-sidepod-highrear.png", "white-braid-sidepod-lowfront-highrear.png", "white-braid-sidepod-lowfront-lowrear.png", "white-braid-sidepod-lowfront.png", "white-braid-sidepod-lowrear.png", "white-braid-sidepod.png", "white-car.jpeg", "white-oz-bare.jpg", "white-oz-highfront-highrear.png", "white-oz-highfront-lowrear.png", "white-oz-highfront.jpg", "white-oz-highfront.png", "white-oz-highrear.png", "white-oz-low.png", "white-oz-lowfront-highrear.png", "white-oz-lowfront-lowrear.png", "white-oz-lowfront.png", "white-oz-lowrear.png", "white-oz-sidepod-highfront-highrear.png", "white-oz-sidepod-highfront-lowrear.png", "white-oz-sidepod-highfront.png", "white-oz-sidepod-highrear.png", "white-oz-sidepod-lowfront-highrear.png", "white-oz-sidepod-lowfront-lowrear.png", "white-oz-sidepod-lowfront.png", "white-oz-sidepod-lowrear.png", "white-oz-sidepod.png"
 ];
 
 const findBestImage = (state) => {
   const c = state.color || 'white';
-  // Eğer state.jant 'none' ise veya boşsa 'base' olarak kabul et
   const w = (!state.jant || state.jant === 'none') ? 'base' : state.jant;
   
-  let requiredKeywords = [c, w];
-  
-  if (state.sidepod) requiredKeywords.push('sidepod');
-  
+  const hasSidepod = !!state.sidepod;
   const hasFront = state.frontWing && state.frontWing !== 'none';
   const hasRear = state.rearWing && state.rearWing !== 'none';
 
-  if (hasFront) {
-    requiredKeywords.push(state.frontWing); 
+  const parts = [c, w];
+  if (hasSidepod) parts.push('sidepod');
+  
+  if (hasFront) parts.push(state.frontWing + 'front'); // 'lowfront' or 'highfront'
+  if (hasRear) parts.push(state.rearWing + 'rear');    // 'lowrear' or 'highrear'
+  
+  if (!hasSidepod && !hasFront && !hasRear) {
+    parts.push('bare');
   }
-  if (hasRear) {
-    requiredKeywords.push(state.rearWing);
-    requiredKeywords.push('rear'); 
-  }
+  
+  const exactName = parts.join('-'); // e.g. white-braid-sidepod-lowfront-lowrear
 
-  // Eğer aerodinamik eklenti yoksa, saf (bare/car) isimlendirmelerini ara
-  if (!state.sidepod && !hasFront && !hasRear) {
-    if (w === 'base') requiredKeywords.push('car');
-    else requiredKeywords.push('bare');
-  }
-
-  // İlgili tüm anahtar kelimeleri içeren dosyayı bul
-  const match = AVAILABLE_FILES.find(file => {
-    const lowerFile = file.toLowerCase();
-    return requiredKeywords.every(kw => lowerFile.includes(kw));
-  });
+  // Find the exact match (ignoring extension)
+  const match = AVAILABLE_FILES.find(file => file.toLowerCase().startsWith(exactName.toLowerCase() + '.'));
 
   return match ? `/assets/cars/${match}` : null;
 };
@@ -197,7 +188,6 @@ export default function CarViewer({ state, activeSection }) {
       >
         {isInterior ? (
           <img
-            key={interiorSrc}
             src={interiorSrc}
             alt="Car Interior"
             draggable={false}
@@ -211,7 +201,7 @@ export default function CarViewer({ state, activeSection }) {
             }}
           />
         ) : (
-          /* ── EXTERIOR: Smart single image crossfade fallback ── */
+          /* ── EXTERIOR: No-effect instant swap (as requested) ── */
           <div
             style={{
               position: "absolute",
@@ -219,36 +209,20 @@ export default function CarViewer({ state, activeSection }) {
               backgroundColor: "transparent",
             }}
           >
-            {/* Eski Resim (Altta kalır) */}
-            <img
-              src={prevExteriorImage}
-              alt="Previous Car Exterior"
-              draggable={false}
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "100%",
-                objectFit: "contain",
-                pointerEvents: "none",
-              }}
-            />
-            {/* Yeni Resim (Üstte belirir) */}
             <img
               src={currentExteriorImage}
               alt="Current Car Exterior Configuration"
               draggable={false}
               style={{
                 position: "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                width: "auto",
                 height: "100%",
-                objectFit: "contain",
+                maxWidth: "none",
                 pointerEvents: "none",
-                opacity: isFading ? 0 : 1,
-                transition: "opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1)", // Premium Porsche tarzı yumuşak geçiş
+                transition: "all 0.3s ease-in-out",
               }}
             />
           </div>
