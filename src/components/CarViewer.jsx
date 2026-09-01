@@ -249,9 +249,8 @@ export default function CarViewer({ state, activeSection }) {
                 height: "100%",
                 objectFit: "contain",
                 pointerEvents: "none",
-                transform: "scale(1.02)", /* Kenarlardaki render hatalarını kesmek için hafif zoom */
-                opacity: isFading ? 1 : 0,
-                transition: isFading ? "opacity 0.6s ease" : "none",
+                transform: "scale(1.02)",
+                opacity: 1, /* Alttaki resim her zaman sabit, şeffaflaşıp arka planı göstermez */
               }}
             />
             {/* Yeni Resim (Üstte, yavaşça belirir) */}
@@ -259,7 +258,6 @@ export default function CarViewer({ state, activeSection }) {
               src={currentExteriorImage}
               alt="Car Exterior"
               draggable={false}
-              onLoad={() => setIsFading(false)}
               style={{
                 position: "absolute",
                 inset: 0,
@@ -267,9 +265,9 @@ export default function CarViewer({ state, activeSection }) {
                 height: "100%",
                 objectFit: "contain",
                 pointerEvents: "none",
-                transform: "scale(1.02)", /* Kenarlardaki render hatalarını kesmek için hafif zoom */
+                transform: "scale(1.02)",
                 opacity: isFading ? 0 : 1,
-                transition: "opacity 0.6s ease",
+                transition: isFading ? "none" : "opacity 1.5s ease",
               }}
             />
           </div>
