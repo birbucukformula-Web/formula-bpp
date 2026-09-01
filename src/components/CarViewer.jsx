@@ -256,7 +256,7 @@ export default function CarViewer({ state, activeSection }) {
                 height: "100%",
                 objectFit: "contain",
                 pointerEvents: "none",
-                transform: "scale(1.02)",
+                transform: "scale(1.15)",
                 opacity: 1, /* Alttaki resim her zaman sabit, şeffaflaşıp arka planı göstermez */
               }}
             />
@@ -271,8 +271,8 @@ export default function CarViewer({ state, activeSection }) {
                 width: "100%",
                 height: "100%",
                 objectFit: "contain",
+                transform: "scale(1.15)",
                 pointerEvents: "none",
-                transform: "scale(1.02)",
                 opacity: isFading ? 0 : 1,
                 transition: isFading ? "none" : "opacity 1.5s ease",
               }}
