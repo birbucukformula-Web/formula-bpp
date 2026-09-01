@@ -204,7 +204,13 @@ export default function CarViewer({ state, activeSection }) {
         className="car-viewer-inner"
         style={{
           position: "absolute",
-          inset: "56px 60px 40px 60px",
+          top: "56px",
+          bottom: "40px",
+          left: 0,
+          right: 0,
+          margin: "0 auto",
+          width: "calc(100% - 120px)",
+          maxWidth: "1100px",
           transform: `translate(${offset.x}px, ${offset.y}px) scale(${scale})`,
           transformOrigin: "center center",
           transition: isZoomed ? "none" : "transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94)",

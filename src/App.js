@@ -293,9 +293,9 @@ export default function App() {
         <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
           {user ? (
             <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                {renderAvatarSprite(user.avatarIndex, 36)}
-                <span style={{ fontSize: "14px", fontWeight: 600, color: "rgba(255, 255, 255, 0.85)" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                {renderAvatarSprite(user.avatarIndex, 52)}
+                <span style={{ fontSize: "16px", fontWeight: 700, color: "rgba(255, 255, 255, 0.9)" }}>
                   {user.username}
                 </span>
               </div>

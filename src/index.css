@@ -5,7 +5,7 @@
   main { height: auto !important; overflow: visible !important; min-height: min-content !important; }
   .responsive-layout { flex-direction: column !important; height: auto !important; overflow: visible !important; }
   .responsive-viewer-container { position: sticky !important; top: 0; z-index: 50 !important; height: 35vh !important; flex: none !important; background: #08080c !important; border-bottom: 1px solid rgba(255,255,255,0.05); overflow: hidden !important; }
-  .car-viewer-inner { inset: 0px !important; }
+  .car-viewer-inner { inset: 0px !important; width: 100% !important; max-width: none !important; margin: 0 !important; }
   .car-viewer-inner img { object-fit: contain !important; transform: scale(1.15) !important; }
   .responsive-sidebar { flex: none !important; width: 100% !important; overflow: visible !important; border-left: none !important; height: auto !important; }
   .responsive-sidebar > div { height: auto !important; overflow: visible !important; }
