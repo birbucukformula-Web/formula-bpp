@@ -224,8 +224,36 @@ export default function App() {
             { id: "configurator", label: "CUSTOMIZE" },
             { id: "forum", label: "PIT LANE FORUM" },
             { id: "garage", label: "GARAGE GUIDE" },
+            { id: "about", label: "ABOUT US", url: "https://birbucukadanaformula.com/" },
           ].map((item) => {
             const isActive = page === item.id;
+            
+            if (item.url) {
+              return (
+                <a
+                  key={item.id}
+                  href={item.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{
+                    color: "rgba(255, 255, 255, 0.5)",
+                    fontSize: "11px",
+                    fontWeight: 700,
+                    letterSpacing: "0.15em",
+                    padding: "8px 4px",
+                    cursor: "pointer",
+                    textDecoration: "none",
+                    position: "relative",
+                    transition: "color 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+                  }}
+                  onMouseEnter={(e) => e.currentTarget.style.color = "#fff"}
+                  onMouseLeave={(e) => e.currentTarget.style.color = "rgba(255, 255, 255, 0.5)"}
+                >
+                  {item.label}
+                </a>
+              );
+            }
+
             return (
               <button
                 key={item.id}
