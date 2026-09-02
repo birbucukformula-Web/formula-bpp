@@ -10,7 +10,7 @@ export default function SummaryBar({ state }) {
     return section.options.find(o => o.id === state[sectionId])?.label || "";
   };
 
-  const jantLabel = state.jant ? state.jant.toUpperCase() : "";
+  const wheelsLabel = state.wheels ? state.wheels.toUpperCase() : "";
 
   const aeroParts = [
     state.highWing && "High Wing",
@@ -21,9 +21,9 @@ export default function SummaryBar({ state }) {
   const parts = [
     state.model,
     colorLabel,
-    jantLabel ? `${jantLabel} Rim` : "",
+    wheelsLabel ? `${wheelsLabel} Rim` : "",
     ...aeroParts,
-    getOptionLabel("koltuk"),
+    getOptionLabel("seat"),
   ].filter(Boolean);
 
   return (

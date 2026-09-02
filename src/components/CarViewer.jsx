@@ -11,7 +11,7 @@ const AVAILABLE_FILES = [
 
 export const findBestImage = (state) => {
   const c = state.color || 'white';
-  const w = (!state.jant || state.jant === 'none') ? 'base' : state.jant;
+  const w = (!state.wheels || state.wheels === 'none') ? 'base' : state.wheels;
   
   const hasSidepod = !!state.sidepod;
   const hasFront = state.frontWing && state.frontWing !== 'none';
@@ -72,7 +72,7 @@ export default function CarViewer({ state, activeSection }) {
   const lastPan = useRef(null);
   const isDragging = useRef(false);
 
-  const isInterior = activeSection === "koltuk" || activeSection === "direksiyon";
+  const isInterior = activeSection === "seat" || activeSection === "steering";
   const interiorSrc = isInterior ? getInteriorImage(activeSection, state) : null;
 
   // State değiştikçe yeni kombinasyon resmini bul. Bulunursa crossfade ile güncelle.

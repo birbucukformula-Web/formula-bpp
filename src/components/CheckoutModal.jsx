@@ -1,8 +1,12 @@
 // src/components/CheckoutModal.jsx
+import { useState } from "react";
 import { findBestImage } from "./CarViewer";
 import { COLORS, SECTIONS } from "../data/config";
+import { db } from "../firebase";
+import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 
-export default function CheckoutModal({ state, onClose }) {
+export default function CheckoutModal({ state, user, triggerToast, onClose }) {
+  const [isSaving, setIsSaving] = useState(false);
   const imageUrl = findBestImage(state);
 
   const getOptionLabel = (sectionId, valueId) => {
@@ -13,15 +17,15 @@ export default function CheckoutModal({ state, onClose }) {
   };
 
   const colorLabel = COLORS.find(c => c.id === state.color)?.label || state.color;
-  const jantLabel = state.jant && state.jant !== "none" ? getOptionLabel("jant", state.jant) : "Standart/Yok";
-  const koltukLabel = getOptionLabel("koltuk", state.koltuk);
-  const direksiyonLabel = getOptionLabel("direksiyon", state.direksiyon);
-  const lastikLabel = getOptionLabel("lastik", state.lastik);
-  const suspansiyonLabel = getOptionLabel("suspansiyon", state.suspansiyon);
+  const wheelsLabel = state.wheels && state.wheels !== "none" ? getOptionLabel("wheels", state.wheels) : "Standart/Yok";
+  const seatLabel = getOptionLabel("seat", state.seat);
+  const steeringLabel = getOptionLabel("steering", state.steering);
+  const tiresLabel = getOptionLabel("tires", state.tires);
+  const suspensionLabel = getOptionLabel("suspension", state.suspension);
   const motorLabel = getOptionLabel("motor", state.motor);
-  const frenLabel = getOptionLabel("fren", state.fren);
-  const sasiLabel = getOptionLabel("sasi", state.sasi);
-  const bataryaLabel = getOptionLabel("batarya", state.batarya);
+  const brakesLabel = getOptionLabel("brakes", state.brakes);
+  const chassisLabel = getOptionLabel("chassis", state.chassis);
+  const batteryLabel = getOptionLabel("battery", state.battery);
 
   const frontAeroLabel = state.frontWing === "high" ? "High Downforce Front Wing" : state.frontWing === "low" ? "Low Drag Front Wing" : "Yok";
   const rearAeroLabel = state.rearWing === "high" ? "High Downforce Rear Wing" : state.rearWing === "low" ? "Low Drag Rear Wing" : "Yok";
@@ -33,26 +37,53 @@ Aşağıda aracımın tüm detaylarını görebilirsiniz:
 
 [ DIŞ TASARIM ]
 • Şasi Rengi: ${colorLabel}
-• Jantlar: ${jantLabel}
+• Jantlar: ${wheelsLabel}
 • Ön Kanat: ${frontAeroLabel}
 • Arka Kanat: ${rearAeroLabel}
 • Sidepod: ${sidepodLabel}
 
 [ İÇ TASARIM ]
-• Koltuk: ${koltukLabel}
-• Direksiyon: ${direksiyonLabel}
+• Koltuk: ${seatLabel}
+• Direksiyon: ${steeringLabel}
 
 [ TEKNİK ÖZELLİKLER ]
-• Şasi Tipi: ${sasiLabel}
+• Şasi Tipi: ${chassisLabel}
 • Motor: ${motorLabel}
-• Batarya: ${bataryaLabel}
-• Lastik: ${lastikLabel}
-• Süspansiyon: ${suspansiyonLabel}
-• Frenler: ${frenLabel}
+• Batarya: ${batteryLabel}
+• Lastik: ${tiresLabel}
+• Süspansiyon: ${suspensionLabel}
+• Frenler: ${brakesLabel}
 
 Geri dönüşünüzü bekliyorum. Teşekkürler.`;
 
   const mailtoHref = `mailto:info@birbucukadanaformula.com?subject=${encodeURIComponent("Yeni Araç Konfigürasyonu İsteği - " + state.model)}&body=${encodeURIComponent(emailBody)}`;
+
+  const handleSaveBuild = async () => {
+    if (!user) {
+      triggerToast("Lütfen önce giriş yapın!");
+      return;
+    }
+    
+    setIsSaving(true);
+    try {
+      const userRef = doc(db, "users", user.uid);
+      const newBuild = {
+        id: Date.now().toString(),
+        date: new Date().toISOString().replace('T', ' ').slice(0, 16),
+        config: state
+      };
+      
+      await updateDoc(userRef, {
+        savedBuilds: arrayUnion(newBuild)
+      });
+      triggerToast("Araç profiline başarıyla kaydedildi!");
+    } catch (error) {
+      console.error("Save build error:", error);
+      triggerToast("Kaydedilirken bir hata oluştu.");
+    } finally {
+      setIsSaving(false);
+    }
+  };
 
   return (
     <div style={{
@@ -146,10 +177,60 @@ Geri dönüşünüzü bekliyorum. Teşekkürler.`;
         {/* Action Cards */}
         <div style={{
           display: "grid",
-          gridTemplateColumns: "1fr 1fr",
+          gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
           gap: "20px",
           padding: "20px 40px 40px 40px",
         }}>
+
+          {/* Save Profile Card */}
+          <div style={{
+            background: "rgba(255,255,255,0.02)",
+            border: "1px solid rgba(255,255,255,0.06)",
+            borderRadius: "16px",
+            padding: "24px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            textAlign: "center",
+          }}>
+            <div style={{
+              width: "48px",
+              height: "48px",
+              borderRadius: "50%",
+              background: "rgba(33, 150, 243, 0.1)",
+              color: "#2196f3",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: "24px",
+              marginBottom: "16px",
+            }}>
+              💾
+            </div>
+            <h3 style={{ fontSize: "18px", margin: "0 0 8px 0" }}>Profile Kaydet</h3>
+            <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.5)", margin: "0 0 20px 0", lineHeight: "1.5" }}>
+              Bu konfigürasyonu profiline kaydet ve istediğin zaman geri yükle.
+            </p>
+            <button 
+              onClick={handleSaveBuild}
+              disabled={isSaving}
+              style={{
+                width: "100%",
+                padding: "12px 24px",
+                background: isSaving ? "rgba(255,255,255,0.1)" : "#2196f3",
+                color: "white",
+                border: "none",
+                fontWeight: 600,
+                fontSize: "13px",
+                borderRadius: "30px",
+                transition: "all 0.2s",
+                marginTop: "auto",
+                cursor: isSaving ? "not-allowed" : "pointer"
+              }}
+            >
+              {isSaving ? "Kaydediliyor..." : "Kaydet"}
+            </button>
+          </div>
           
           {/* Location Card */}
           <div style={{

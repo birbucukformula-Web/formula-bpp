@@ -252,9 +252,9 @@ export default function OptionPanel({ state, onChange, activeSection, setActiveS
     if (tab === "Exterior") {
       setActiveSection("color");
     } else if (tab === "Interior") {
-      setActiveSection("koltuk");
+      setActiveSection("seat");
     } else {
-      setActiveSection("lastik");
+      setActiveSection("tires");
     }
   };
 

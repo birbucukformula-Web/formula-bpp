@@ -1,121 +1,25 @@
 // src/components/CarConfigurator.jsx
-import { useState, useEffect } from "react";
-import { DEFAULT_STATE } from "../data/config";
+import { useState, useEffect, useRef } from "react";
 import CarViewer from "./CarViewer";
 import OptionPanel from "./OptionPanel";
 import ModelSelector from "./ModelSelector";
 import CheckoutModal from "./CheckoutModal";
 import SummaryBar from "./SummaryBar";
 import Footer from "./Footer";
+import { calculateMetrics } from "../utils/physicsEngine";
 
-export default function CarConfigurator({ user, triggerToast }) {
-  const [state, setState] = useState(DEFAULT_STATE);
+export default function CarConfigurator({ user, triggerToast, state, onChange }) {
   const [activeSection, setActiveSection] = useState("color");
   const [showCheckout, setShowCheckout] = useState(false);
+  const sidebarRef = useRef(null);
 
-  const handleChange = (key, value) => setState((prev) => ({ ...prev, [key]: value }));
-
-  const calculateMetrics = () => {
-    let weight = 120; // base structure
-
-    // Chassis
-    if (state.sasi === "tubular") weight += 26;
-    else if (state.sasi === "monocoque") weight += 18;
-
-    // Motor (Electric motors are much lighter than combustion engine block + fuel tank!)
-    if (state.motor === "amk_4wd") weight += 30;
-    else if (state.motor === "amk_2wd") weight += 15;
-    else if (state.motor === "emrax_rwd") weight += 25;
-
-
-    // Tires
-    if (state.lastik === "avon") weight += 15.2;
-    else if (state.lastik === "hoosier") weight += 14.4;
-    else if (state.lastik === "pirelli") weight += 16.0;
-
-    // Battery
-    if (state.batarya === "kokam") weight += 24; // Pouch cells generally need more robust housing or this specific config is heavier
-    else if (state.batarya === "molicel") weight += 18; // Cylindrical light pack
-
-    // Seat
-    if (state.koltuk === "carbon") weight += 3.2;
-    else weight += 4.8;
-
-    // Steering
-    if (state.direksiyon === "pro") weight += 1.8;
-    else weight += 1.2;
-
-    // Aero parts
-    if (state.frontWing === 'high') weight += 3.0; // front high wing
-    else if (state.frontWing === 'low') weight += 1.5; // front low wing
-
-    if (state.rearWing === 'high') weight += 2.5; // rear high wing
-    else if (state.rearWing === 'low') weight += 1.5; // rear low wing
-
-    if (state.sidepod) weight += 2.5;  // sidepod bodywork
-
-    const weightSub = state.sasi === "monocoque" ? "Carbon Monocoque" : "Tubular Steel Chassis";
-
-    let power = 107;
-    let engineSub = "AMK DD5 (4WD)";
-    if (state.motor === "amk_4wd") {
-      power = 107;
-      engineSub = "AMK DD5 (4WD)";
-    } else if (state.motor === "amk_2wd") {
-      power = 94;
-      engineSub = "AMK DD5 (2WD)";
-    } else if (state.motor === "emrax_rwd") {
-      power = 107;
-      engineSub = "Emrax 228 (RWD)";
+  const scrollToTop = () => {
+    if (sidebarRef.current) {
+      sidebarRef.current.scrollTo({ top: 0, behavior: 'smooth' });
     }
-    
-    // Battery power boost
-    if (state.batarya === "kokam") {
-      power += 8; // Kokam high discharge gives more peak power
-    }
-
-    // 3. HIZLANMA (ACCELERATION) - Electric vehicles have instant torque
-    // 4WD torque vectoring is the absolute king, launching incredibly fast!
-    let accel = 3.5;
-    if (state.motor === "amk_4wd") {
-      accel = 1.95; // 4WD Torque Vectoring
-    } else if (state.motor === "amk_2wd") {
-      accel = 2.25; // 2WD dual-motor traction control
-    } else if (state.motor === "emrax_rwd") {
-      accel = 2.45; // Single motor differential
-    }
-
-    // Weight penalty/benefit (Standard weight is ~220 kg)
-    accel += (weight - 220) * 0.005;
-
-    // Tires effect (Hoosier is the stickiest compound)
-    if (state.lastik === "hoosier") accel -= 0.12;
-    else if (state.lastik === "avon") accel -= 0.06;
-
-    // Aero downforce effect on acceleration
-    if (state.frontWing === 'high') accel -= 0.05;
-    else if (state.frontWing === 'low') accel -= 0.02;
-
-    if (state.rearWing === 'high') accel -= 0.05;
-    else if (state.rearWing === 'low') accel -= 0.02;
-
-    // Battery discharge effect
-    if (state.batarya === "kokam") accel -= 0.08; // High C-rate improves 0-100 launch
-
-    // Clamp values beautifully (FSE world records are between 1.80s and 2.90s)
-    accel = Math.max(1.50, Math.min(2.90, accel));
-
-    return {
-      weight: weight.toFixed(1) + " kg",
-      weightSub,
-      power: power + " HP",
-      engineSub,
-      accel: accel.toFixed(2) + " s",
-      accelSub: "0 – 100 km/h"
-    };
   };
 
-  const metrics = calculateMetrics();
+  const metrics = calculateMetrics(state);
 
   return (
     <div className="responsive-layout" style={{
@@ -220,7 +124,7 @@ export default function CarConfigurator({ user, triggerToast }) {
       </div>
 
       {/* ── RIGHT: Luxury Configuration Panel (Glassmorphic) ── */}
-      <div className="responsive-sidebar" style={{
+      <div className="responsive-sidebar" ref={sidebarRef} style={{
         width: "460px",
         flexShrink: 0,
         background: "rgba(10, 10, 15, 0.95)",
@@ -238,7 +142,7 @@ export default function CarConfigurator({ user, triggerToast }) {
         <div style={{ flex: 1, minHeight: 0 }}>
           <OptionPanel
             state={state}
-            onChange={handleChange}
+            onChange={onChange}
             activeSection={activeSection}
             setActiveSection={setActiveSection}
             triggerToast={triggerToast}
@@ -282,10 +186,33 @@ export default function CarConfigurator({ user, triggerToast }) {
           >
             SAVE & VIEW DETAILS
           </button>
+
+          {/* Mobile Scroll to Top Button */}
+          <button
+            className="mobile-scroll-top-btn"
+            onClick={scrollToTop}
+            style={{
+              width: "100%",
+              padding: "16px",
+              background: "rgba(255,255,255,0.05)",
+              border: "1px solid rgba(255,255,255,0.1)",
+              borderRadius: "28px",
+              color: "white",
+              fontWeight: 800,
+              fontSize: "12px",
+              letterSpacing: "0.15em",
+              textTransform: "uppercase",
+              cursor: "pointer",
+              transition: "all 0.2s",
+              marginTop: "12px",
+            }}
+          >
+            ↑ YUKARI KAYDIR
+          </button>
         </div>
       </div>
 
-      {showCheckout && <CheckoutModal state={state} onClose={() => setShowCheckout(false)} />}
+      {showCheckout && <CheckoutModal state={state} user={user} triggerToast={triggerToast} onClose={() => setShowCheckout(false)} />}
     </div>
   );
 }

@@ -239,7 +239,7 @@ export default function Forum({ user, triggerToast, openLogin }) {
   };
 
   return (
-    <div style={{
+    <div className="responsive-forum-wrapper" style={{
       display: "flex",
       width: "100%",
       height: "100%",
@@ -479,6 +479,29 @@ export default function Forum({ user, triggerToast, openLogin }) {
         {activeThread && (
           <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
             
+            {/* Back Button */}
+            <button
+              onClick={() => setActiveThread(null)}
+              style={{
+                alignSelf: "flex-start",
+                background: "transparent",
+                border: "none",
+                color: "rgba(255,255,255,0.6)",
+                cursor: "pointer",
+                fontSize: "12px",
+                fontWeight: 700,
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+                padding: "0",
+                transition: "color 0.2s"
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.color = "#fff"}
+              onMouseLeave={(e) => e.currentTarget.style.color = "rgba(255,255,255,0.6)"}
+            >
+              <span style={{ fontSize: "16px" }}>←</span> Geri Dön
+            </button>
+
             {/* Header / Thread Title Banner */}
             <div style={{
               background: "rgba(255, 255, 255, 0.02)",

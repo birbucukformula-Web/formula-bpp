@@ -21,7 +21,7 @@ export const SECTIONS = [
     group: "Exterior",
   },
   {
-    id: "jant",
+    id: "wheels",
     label: "Wheels",
     icon: "◎",
     changeable: true,
@@ -45,7 +45,7 @@ export const SECTIONS = [
 
   // ── INTERIOR ──────────────────────────────────────────────
   {
-    id: "koltuk",
+    id: "seat",
     label: "Seat",
     icon: "▣",
     changeable: true,
@@ -58,7 +58,7 @@ export const SECTIONS = [
     default: "carbon",
   },
   {
-    id: "direksiyon",
+    id: "steering",
     label: "Steering Wheel",
     icon: "⊙",
     changeable: true,
@@ -73,7 +73,7 @@ export const SECTIONS = [
 
   // ── SPECS ───────────────────────────────────────────
   {
-    id: "lastik",
+    id: "tires",
     label: "Tyres",
     icon: "◉",
     changeable: true,
@@ -87,7 +87,7 @@ export const SECTIONS = [
     default: "avon",
   },
   {
-    id: "suspansiyon",
+    id: "suspension",
     label: "Suspension",
     icon: "⌇",
     changeable: true,
@@ -114,7 +114,7 @@ export const SECTIONS = [
     default: "amk_4wd",
   },
   {
-    id: "fren",
+    id: "brakes",
     label: "Brakes",
     icon: "⎔",
     changeable: true,
@@ -128,7 +128,7 @@ export const SECTIONS = [
     default: "brembo",
   },
   {
-    id: "sasi",
+    id: "chassis",
     label: "Chassis",
     icon: "⛨",
     changeable: true,
@@ -141,7 +141,7 @@ export const SECTIONS = [
     default: "tubular",
   },
   {
-    id: "batarya",
+    id: "battery",
     label: "Battery",
     icon: "🔋",
     changeable: true,
@@ -158,29 +158,29 @@ export const SECTIONS = [
 export const DEFAULT_STATE = {
   model: "FS-26",
   color: "white",
-  jant: null, // not pre-selected
+  wheels: null, // not pre-selected
   // Aero selections
   frontWing: 'none', // 'none' | 'low' | 'high'
   rearWing: 'none',  // 'none' | 'low' | 'high'
   sidepod: false,    // boolean
-  koltuk: "carbon",
-  direksiyon: "pro",
+  seat: "carbon",
+  steering: "pro",
   // Technical selections:
-  lastik: "avon",
-  suspansiyon: "double_wishbone",
+  tires: "avon",
+  suspension: "double_wishbone",
   motor: "amk_4wd",
-  fren: "brembo",
-  sasi: "tubular",
-  batarya: "molicel",
+  brakes: "brembo",
+  chassis: "tubular",
+  battery: "molicel",
 };
 
 export const getInteriorImage = (section, state) => {
-  if (section === 'koltuk') {
-    if (state.koltuk === 'carbon') return '/assets/cars/Carbon-Fibre.png';
+  if (section === 'seat') {
+    if (state.seat === 'carbon') return '/assets/cars/Carbon-Fibre.png';
     return '/assets/cars/standard-seat.png';
   }
-  if (section === 'direksiyon') {
-    if (state.direksiyon === 'pro') return '/assets/cars/pro-display.png';
+  if (section === 'steering') {
+    if (state.steering === 'pro') return '/assets/cars/pro-display.png';
     return '/assets/cars/basic-steel.png';
   }
   return null;

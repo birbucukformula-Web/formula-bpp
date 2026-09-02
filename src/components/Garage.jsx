@@ -165,7 +165,7 @@ export default function Garage({ user, triggerToast }) {
   };
 
   return (
-    <div style={{
+    <div className="responsive-garage-layout" style={{
       display: "flex",
       width: "100%",
       height: "100%",
@@ -174,7 +174,7 @@ export default function Garage({ user, triggerToast }) {
     }}>
       
       {/* ── LEFT FIXED SIDEBAR ── */}
-      <aside style={{
+      <aside className="responsive-garage-sidebar" style={{
         width: "280px",
         background: "rgba(10, 10, 15, 0.6)",
         backdropFilter: "blur(20px)",
@@ -238,7 +238,7 @@ export default function Garage({ user, triggerToast }) {
       </aside>
 
       {/* ── RIGHT DYNAMIC CONTENT AREA ── */}
-      <main style={{
+      <main className="responsive-garage-main" style={{
         flex: 1,
         padding: "40px 60px",
         boxSizing: "border-box",
