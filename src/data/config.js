@@ -28,8 +28,8 @@ export const SECTIONS = [
     type: "option",
     group: "Exterior",
     options: [
-      { id: "oz",    label: "OZ Racing", sub: "Multi-spoke Black · 4.6 kg" },
-      { id: "braid", label: "Braid",     sub: "Silver Alloy · 4.0 kg" },
+      { id: "oz",    label: "Aliminyum", sub: "Multi-spoke Black · 4.6 kg" },
+      { id: "braid", label: "Magnezyum",     sub: "Silver Alloy · 4.0 kg" },
     ],
     default: null, // nothing pre-selected
   },
