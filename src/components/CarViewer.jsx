@@ -210,6 +210,9 @@ export default function CarViewer({ activeSection }) {
           margin: "0 auto",
           width: "calc(100% - 120px)",
           maxWidth: "740px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
           transform: `translate(${offset.x}px, ${offset.y}px) scale(${scale})`,
           transformOrigin: "center center",
           transition: isZoomed ? "none" : "transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
@@ -235,8 +238,10 @@ export default function CarViewer({ activeSection }) {
           /* ── EXTERIOR: Smart single image crossfade fallback ── */
           <div
             style={{
-              position: "absolute",
-              inset: 0,
+              position: "relative",
+              width: "100%",
+              maxHeight: "100%",
+              aspectRatio: "16/9",
               backgroundColor: "#ffffff", 
               overflow: "hidden",
               borderRadius: "16px",
@@ -253,9 +258,8 @@ export default function CarViewer({ activeSection }) {
                 inset: 0,
                 width: "100%",
                 height: "100%",
-                objectFit: "contain",
+                objectFit: "cover",
                 pointerEvents: "none",
-                transform: "scale(1.25)",
                 opacity: 1, /* Alttaki resim her zaman sabit, şeffaflaşıp arka planı göstermez */
               }}
             />
@@ -269,8 +273,7 @@ export default function CarViewer({ activeSection }) {
                 inset: 0,
                 width: "100%",
                 height: "100%",
-                objectFit: "contain",
-                transform: "scale(1.25)",
+                objectFit: "cover",
                 pointerEvents: "none",
                 opacity: isFading ? 0 : 1,
                 transition: isFading ? "none" : "opacity 1.0s ease-in-out",
