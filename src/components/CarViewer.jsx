@@ -209,7 +209,7 @@ export default function CarViewer({ activeSection }) {
           right: 0,
           margin: "0 auto",
           width: "calc(100% - 120px)",
-          maxWidth: "850px",
+          maxWidth: "740px",
           transform: `translate(${offset.x}px, ${offset.y}px) scale(${scale})`,
           transformOrigin: "center center",
           transition: isZoomed ? "none" : "transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
@@ -255,7 +255,7 @@ export default function CarViewer({ activeSection }) {
                 height: "100%",
                 objectFit: "contain",
                 pointerEvents: "none",
-                transform: "scale(1.15)",
+                transform: "scale(1.25)",
                 opacity: 1, /* Alttaki resim her zaman sabit, şeffaflaşıp arka planı göstermez */
               }}
             />
@@ -270,10 +270,10 @@ export default function CarViewer({ activeSection }) {
                 width: "100%",
                 height: "100%",
                 objectFit: "contain",
-                transform: "scale(1.15)",
+                transform: "scale(1.25)",
                 pointerEvents: "none",
                 opacity: isFading ? 0 : 1,
-                transition: isFading ? "none" : "opacity 1.5s ease",
+                transition: isFading ? "none" : "opacity 1.0s ease-in-out",
               }}
             />
           </div>
