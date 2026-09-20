@@ -28,8 +28,8 @@ export const SECTIONS = [
     type: "option",
     group: "Exterior",
     options: [
-      { id: "oz",    label: "Aliminyum", sub: "Multi-spoke Black · 4.6 kg" },
-      { id: "braid", label: "Magnezyum",     sub: "Silver Alloy · 4.0 kg" },
+      { id: "oz",    label: "Aluminum", sub: "Multi-spoke Black · 4.6 kg" },
+      { id: "braid", label: "Magnesium",     sub: "Silver Alloy · 4.0 kg" },
     ],
     default: null, // nothing pre-selected
   },
@@ -176,12 +176,12 @@ export const DEFAULT_STATE = {
 
 export const getInteriorImage = (section, state) => {
   if (section === 'seat') {
-    if (state.seat === 'carbon') return '/assets/cars/Carbon-Fibre.png';
-    return '/assets/cars/standard-seat.png';
+    if (state.seat === 'carbon') return '/assets/cars/Carbon-Fibre.webp';
+    return '/assets/cars/standard-seat.webp';
   }
   if (section === 'steering') {
-    if (state.steering === 'pro') return '/assets/cars/pro-display.png';
-    return '/assets/cars/basic-steel.png';
+    if (state.steering === 'pro') return '/assets/cars/pro-display.webp';
+    return '/assets/cars/basic-steel.webp';
   }
   return null;
 };

@@ -22,7 +22,7 @@ export default function Header({ user, onShowLogin, onShowProfile, onLogout }) {
         style={{ display: "flex", alignItems: "center", gap: "14px", textDecoration: "none" }}
       >
         <img
-          src="/assets/team-logo.png"
+          src="/assets/team-logo.webp"
           alt="Adana Formula Student Logo"
           style={{
             width: "80px",

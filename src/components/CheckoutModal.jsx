@@ -4,8 +4,10 @@ import { findBestImage } from "./CarViewer";
 import { COLORS, SECTIONS } from "../data/config";
 import { db } from "../firebase";
 import { doc, updateDoc, arrayUnion } from "firebase/firestore";
+import { useConfig } from "../context/ConfigContext";
 
-export default function CheckoutModal({ state, user, triggerToast, onClose }) {
+export default function CheckoutModal({ onClose }) {
+  const { configState: state, user, triggerToast } = useConfig();
   const [isSaving, setIsSaving] = useState(false);
   const imageUrl = findBestImage(state);
 

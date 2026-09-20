@@ -1,99 +1,67 @@
 // src/utils/physicsEngine.js
+import { BASE_WEIGHT, PHYSICS_DATA } from "../data/physicsData";
 
 export const calculateMetrics = (state) => {
-  let weight = 120; // base structure
-
-  // Chassis
-  if (state.chassis === "tubular") weight += 26;
-  else if (state.chassis === "monocoque") weight += 18;
-
-  // Motor (Electric motors are much lighter than combustion engine block + fuel tank!)
-  if (state.motor === "amk_4wd") weight += 30;
-  else if (state.motor === "amk_2wd") weight += 15;
-  else if (state.motor === "emrax_rwd") weight += 25;
-
-  // Tires
-  if (state.tires === "avon") weight += 15.2;
-  else if (state.tires === "hoosier") weight += 14.4;
-  else if (state.tires === "pirelli") weight += 16.0;
-
-  // Battery
-  if (state.battery === "kokam") weight += 24;
-  else if (state.battery === "molicel") weight += 18;
-
-  // Seat
-  if (state.seat === "carbon") weight += 3.2;
-  else weight += 4.8;
-
-  // Steering
-  if (state.steering === "pro") weight += 1.8;
-  else weight += 1.2;
-
-  // Aero parts
-  if (state.frontWing === 'high') weight += 3.0;
-  else if (state.frontWing === 'low') weight += 1.5;
-
-  if (state.rearWing === 'high') weight += 2.5;
-  else if (state.rearWing === 'low') weight += 1.5;
-
-  if (state.sidepod) weight += 2.5;
-
-  const weightSub = state.chassis === "monocoque" ? "Carbon Monocoque" : "Tubular Steel Chassis";
-
-  let power = 107;
-  let engineSub = "AMK DD5 (4WD)";
-  if (state.motor === "amk_4wd") {
-    power = 107;
-    engineSub = "AMK DD5 (4WD)";
-  } else if (state.motor === "amk_2wd") {
-    power = 94;
-    engineSub = "AMK DD5 (2WD)";
-  } else if (state.motor === "emrax_rwd") {
-    power = 107;
-    engineSub = "Emrax 228 (RWD)";
-  }
+  let weight = BASE_WEIGHT;
+  let power = 0;
   
-  // Battery power boost
-  if (state.battery === "kokam") {
-    power += 8;
-  }
+  // Safe accessor
+  const getProp = (category, key) => {
+    if (!PHYSICS_DATA[category]) return PHYSICS_DATA[category]?.default || {};
+    // Handle booleans (like sidepod)
+    const normalizedKey = typeof key === 'boolean' ? String(key) : (key || "none");
+    return PHYSICS_DATA[category][normalizedKey] || PHYSICS_DATA[category]?.default || {};
+  };
 
-  // ACCELERATION
-  let accel = 3.5;
-  if (state.motor === "amk_4wd") {
-    accel = 1.95; // 4WD Torque Vectoring
-  } else if (state.motor === "amk_2wd") {
-    accel = 2.25; // 2WD dual-motor traction control
-  } else if (state.motor === "emrax_rwd") {
-    accel = 2.45; // Single motor differential
-  }
+  // 1. Weight Calculations
+  weight += getProp("chassis", state.chassis).weight || 0;
+  weight += getProp("motor", state.motor).weight || 0;
+  weight += getProp("tires", state.tires).weight || 0;
+  weight += getProp("battery", state.battery).weight || 0;
+  weight += getProp("seat", state.seat).weight || 0;
+  weight += getProp("steering", state.steering).weight || 0;
+  weight += getProp("frontWing", state.frontWing).weight || 0;
+  weight += getProp("rearWing", state.rearWing).weight || 0;
+  weight += getProp("sidepod", state.sidepod).weight || 0;
 
-  // Weight penalty/benefit (Standard weight is ~220 kg)
-  accel += (weight - 220) * 0.005;
+  // 2. Power Calculations
+  const motorData = getProp("motor", state.motor);
+  power = motorData.power || 0;
 
-  // Tires effect
-  if (state.tires === "hoosier") accel -= 0.12;
-  else if (state.tires === "avon") accel -= 0.06;
+  // 3. Acceleration Calculations (0-100 km/h)
+  // Total mass includes a typical 68kg FS driver
+  const totalMass = weight + 68; 
+  
+  // Base ideal acceleration time based on power-to-weight ratio (HP / kg)
+  // Example: 107 HP / 270 kg = 0.396 HP/kg
+  const pwrRatio = power / totalMass; 
+  
+  // Empirical base time in a vacuum without grip limits
+  let accelTime = (1 / pwrRatio) * 0.75; 
+  
+  // FSE acceleration is primarily grip-limited
+  const drivetrainGrip = motorData.gripFactor || 0.5; // AWD (1.0) vs RWD (0.7)
+  const tireGrip = getProp("tires", state.tires).gripBoost || 0;
+  const batteryGrip = getProp("battery", state.battery).gripBoost || 0; // e.g. lower CoG
+  
+  // Downforce adds virtual weight, increasing grip (crucial for AWD launch)
+  const aeroGrip = (getProp("frontWing", state.frontWing).aeroGrip || 0) + 
+                   (getProp("rearWing", state.rearWing).aeroGrip || 0);
 
-  // Aero downforce effect on acceleration
-  if (state.frontWing === 'high') accel -= 0.05;
-  else if (state.frontWing === 'low') accel -= 0.02;
+  const totalGrip = drivetrainGrip + tireGrip + batteryGrip + aeroGrip;
+  
+  // Apply grip limitation penalty
+  accelTime = accelTime / Math.pow(totalGrip, 0.85);
 
-  if (state.rearWing === 'high') accel -= 0.05;
-  else if (state.rearWing === 'low') accel -= 0.02;
-
-  // Battery discharge effect
-  if (state.battery === "kokam") accel -= 0.08;
-
-  // Clamp values beautifully
-  accel = Math.max(1.50, Math.min(2.90, accel));
+  // Clamp values realistically for Formula Student
+  accelTime = Math.max(1.45, Math.min(4.50, accelTime));
 
   return {
     weight: weight.toFixed(1) + " kg",
-    weightSub,
+    weightSub: getProp("chassis", state.chassis).name || "Unknown Chassis",
     power: power + " HP",
-    engineSub,
-    accel: accel.toFixed(2) + " s",
+    engineSub: motorData.name || "Unknown Motor",
+    accel: accelTime.toFixed(2) + " s",
     accelSub: "0 – 100 km/h"
   };
 };

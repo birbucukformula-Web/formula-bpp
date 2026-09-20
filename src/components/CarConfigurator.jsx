@@ -1,5 +1,5 @@
 // src/components/CarConfigurator.jsx
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import CarViewer from "./CarViewer";
 import OptionPanel from "./OptionPanel";
 import ModelSelector from "./ModelSelector";
@@ -7,8 +7,10 @@ import CheckoutModal from "./CheckoutModal";
 import SummaryBar from "./SummaryBar";
 import Footer from "./Footer";
 import { calculateMetrics } from "../utils/physicsEngine";
+import { useConfig } from "../context/ConfigContext";
 
-export default function CarConfigurator({ user, triggerToast, state, onChange }) {
+export default function CarConfigurator() {
+  const { configState: state, handleConfigChange: onChange } = useConfig();
   const [activeSection, setActiveSection] = useState("color");
   const [showCheckout, setShowCheckout] = useState(false);
   const sidebarRef = useRef(null);
@@ -22,15 +24,7 @@ export default function CarConfigurator({ user, triggerToast, state, onChange })
   const metrics = calculateMetrics(state);
 
   return (
-    <div className="responsive-layout" style={{
-      display: "flex",
-      width: "100%",
-      height: "100%",
-      background: "#08080c",
-      fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
-      color: "white",
-      overflow: "hidden",
-    }}>
+    <div className="responsive-layout">
       {/* CSS overrides for global styling */}
       <style>{`
         ::-webkit-scrollbar {
@@ -53,14 +47,7 @@ export default function CarConfigurator({ user, triggerToast, state, onChange })
       `}</style>
 
       {/* ── SOL: Viewer ve Bilgi Ekranı ── */}
-      <div className="responsive-viewer-container" style={{
-        flex: 1,
-        display: "flex",
-        flexDirection: "column",
-        position: "relative",
-        overflow: "hidden",
-        minWidth: 0,
-      }}>
+      <div className="responsive-viewer-container">
         {/* Lüks Stüdyo Arka Planı (Radial Gradient) */}
         <div style={{
           position: "absolute",
@@ -78,25 +65,13 @@ export default function CarConfigurator({ user, triggerToast, state, onChange })
           position: "relative",
           zIndex: 5,
         }}>
-          <CarViewer state={state} activeSection={activeSection} />
+          <CarViewer activeSection={activeSection} />
         </div>
 
         {/* Alt Özet ve Performans Barı */}
-        <div className="responsive-metrics" style={{
-          position: "relative",
-          zIndex: 10,
-          padding: "16px 40px",
-          background: "linear-gradient(to top, rgba(6, 6, 10, 0.95) 40%, transparent)",
-          borderTop: "1px solid rgba(255, 255, 255, 0.03)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          flexWrap: "wrap",
-          gap: "20px",
-          flexShrink: 0,
-        }}>
+        <div className="responsive-metrics">
           <div className="responsive-summary-bar" style={{ flex: 1, minWidth: "200px" }}>
-            <SummaryBar state={state} />
+            <SummaryBar />
           </div>
 
           {/* Porsche Style Performance Metrics */}
@@ -124,28 +99,14 @@ export default function CarConfigurator({ user, triggerToast, state, onChange })
       </div>
 
       {/* ── RIGHT: Luxury Configuration Panel (Glassmorphic) ── */}
-      <div className="responsive-sidebar" ref={sidebarRef} style={{
-        width: "460px",
-        flexShrink: 0,
-        background: "rgba(10, 10, 15, 0.95)",
-        borderLeft: "1px solid rgba(255, 255, 255, 0.05)",
-        boxShadow: "-10px 0 40px rgba(0,0,0,0.5)",
-        backdropFilter: "blur(20px)",
-        display: "flex",
-        flexDirection: "column",
-        overflow: "hidden",
-        zIndex: 20,
-      }}>
+      <div className="responsive-sidebar" ref={sidebarRef}>
         <div className="responsive-model-selector" style={{ padding: "16px 20px", borderBottom: "1px solid rgba(255, 255, 255, 0.05)", display: "flex", justifyContent: "center" }}>
           <ModelSelector selected={state.model} onChange={(v) => handleChange("model", v)} />
         </div>
         <div style={{ flex: 1, minHeight: 0 }}>
           <OptionPanel
-            state={state}
-            onChange={onChange}
             activeSection={activeSection}
             setActiveSection={setActiveSection}
-            triggerToast={triggerToast}
           />
         </div>
 
@@ -212,7 +173,7 @@ export default function CarConfigurator({ user, triggerToast, state, onChange })
         </div>
       </div>
 
-      {showCheckout && <CheckoutModal state={state} user={user} triggerToast={triggerToast} onClose={() => setShowCheckout(false)} />}
+      {showCheckout && <CheckoutModal onClose={() => setShowCheckout(false)} />}
     </div>
   );
 }

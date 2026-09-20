@@ -1,7 +1,9 @@
 // src/components/SummaryBar.jsx
 import { COLORS, SECTIONS } from "../data/config";
+import { useConfig } from "../context/ConfigContext";
 
-export default function SummaryBar({ state }) {
+export default function SummaryBar() {
+  const { configState: state } = useConfig();
   const colorLabel = COLORS.find(c => c.id === state.color)?.label || "";
 
   const getOptionLabel = (sectionId) => {

@@ -10,8 +10,10 @@
     "react-scripts": "5.0.1"
   },
   "scripts": {
+    "prestart": "node scripts/generate-cars-list.js",
     "start": "react-scripts start",
-    "dev": "react-scripts start",
+    "dev": "npm run start",
+    "prebuild": "node scripts/generate-cars-list.js",
     "build": "react-scripts build"
   },
   "browserslist": {

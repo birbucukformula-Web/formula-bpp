@@ -130,7 +130,7 @@ export default function Forum({ user, triggerToast, openLogin }) {
         <div style={{
           width: "100%",
           height: "100%",
-          backgroundImage: "url('/assets/avatars_sprite.jpg')",
+          backgroundImage: "url('/assets/avatars_sprite.webp')",
           backgroundSize: "300% 300%",
           backgroundPosition: `${col * 50}% ${row * 50}%`,
         }} />

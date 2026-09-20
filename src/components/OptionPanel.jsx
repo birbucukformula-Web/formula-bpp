@@ -1,6 +1,6 @@
-// src/components/OptionPanel.jsx
 import { useState } from "react";
 import { SECTIONS, COLORS } from "../data/config";
+import { useConfig } from "../context/ConfigContext";
 
 function SectionHeader({ section, isOpen, onClick, state }) {
   const isSpec = section.group === "Specs";
@@ -244,7 +244,8 @@ function AeroToggleItem({ label, sub, icon, active, onClick }) {
   );
 }
 
-export default function OptionPanel({ state, onChange, activeSection, setActiveSection, triggerToast }) {
+export default function OptionPanel({ activeSection, setActiveSection }) {
+  const { configState: state, handleConfigChange: onChange, triggerToast } = useConfig();
   const [activeTab, setActiveTab] = useState("Exterior"); // "Exterior" | "Interior" | "Specs"
 
   const handleTabChange = (tab) => {
